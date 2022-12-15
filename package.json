@@ -1,6 +1,6 @@
 {
   "name": "tbl-custom-components",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
   "main": "dist/tbl-custom-components.umd.min.js",
   "scripts": {
@@ -22,6 +22,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not dead"
+    "not ie <= 8"
   ]
 }

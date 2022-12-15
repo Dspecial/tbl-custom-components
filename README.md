@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 13:50:48
  * @LastEditors: dxx
- * @LastEditTime: 2022-12-15 09:47:44
+ * @LastEditTime: 2022-12-15 15:09:43
 -->
 
 ## tbl-custom-components
@@ -27,6 +27,8 @@ npm i tbl-custom-components;
 import ElementUI from 'element-ui';
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
 
+import 'element-ui/lib/theme-chalk/index.css'; // element-ui样式表
+
 ```
 
 ##### 全局注册
@@ -34,6 +36,8 @@ Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
 ```
 import TblCustomComponents from 'tbl-custom-components';  // 引入自定义组件
 Vue.use(TblComponents); // 声明使用TblComponents自定义组件
+
+import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
 ```
 
 ##### 按需引入
@@ -42,6 +46,8 @@ Vue.use(TblComponents); // 声明使用TblComponents自定义组件
 import { TblDaterangePicker,TblTooltipOver } from 'tbl-custom-components';  // 按需引入自定义组件
 Vue.use(TblDaterangePicker); // 声明使用TblComponents自定义组件
 Vue.use(TblTooltipOver); // 声明使用TblComponents自定义组件
+
+import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
 ```
 
 ### 组件使用说明
