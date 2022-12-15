@@ -1,0 +1,27 @@
+{
+  "name": "tbl-custom-components",
+  "version": "1.0.0",
+  "private": false,
+  "main": "dist/tbl-custom-components.umd.min.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build  --target lib --entry src/components/index.js"
+  },
+  "dependencies": {
+    "core-js": "^3.26.1",
+    "element-ui": "^2.15.12",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "vue-template-compiler": "^2.6.14",
+    "moment": "^2.29.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
