@@ -2,18 +2,19 @@
  * @Author: dxx
  * @Date: 2022-12-13 16:11:52
  * @LastEditors: dxx
- * @LastEditTime: 2022-12-14 18:42:13
+ * @LastEditTime: 2022-12-27 09:59:46
  */
 // 定义 install 方法，接受 Vue 作为参数，如果使用 use 注册插件，则所有的组件都将被注册
 // 导入组件：按需导入时导入文件夹下的index.js文件， 全局导入时导入 .vue文件或者index.js文件都可以
-import TblDaterangePicker from './TblDaterangePicker';
-import TblTooltipOver from './TblTooltipOver';
+import TblDaterangePicker from './daterange-picker';
+import TblTooltipOver from './tooltip-over';
+import TblIconPicker from './icon-picker';
 
 // 导入版本号
 import packageInfo from '../../package.json';
 
 // 定义组件数组
-const components = [TblDaterangePicker, TblTooltipOver];
+const components = [TblDaterangePicker, TblTooltipOver, TblIconPicker];
 
 const install = function (Vue, options) {
   if (options && options.components) {
@@ -30,11 +31,12 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-export { TblDaterangePicker, TblTooltipOver };
+export { TblDaterangePicker, TblTooltipOver,TblIconPicker };
 
 export default { 
   version: packageInfo.version,
   install,
   TblDaterangePicker, // 单独导出TblDaterangePicker，用于按需加载
-  TblTooltipOver
+  TblTooltipOver,
+  TblIconPicker
 };

@@ -23,6 +23,14 @@
         <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
       </div>
     </div>
+
+    <!-- 图标选择器： -->
+    <div class="item">
+      <p>3. 图标选择器：</p>
+      <div style="width:500px">
+        <tbl-icon-picker v-model="iconValue" placeholder="请选择图标" type="wisdom"></tbl-icon-picker>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,6 +56,7 @@ export default {
         },
       },
       content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
+      iconValue: '',
     };
   },
   components: {},
@@ -65,6 +74,10 @@ export default {
 </script>
 
 <style>
+/* 引入自定义wisdom 图标（在线引用，项目中还是推荐下载下来使用） */
+@import '//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css';
+/* 引入自定义noah 图标（在线引用，项目中还是推荐下载下来使用） */
+@import '//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css';
 .item {
   margin-bottom: 20px;
 }
