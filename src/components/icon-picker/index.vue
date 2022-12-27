@@ -6,7 +6,7 @@
 
     <!-- 弹出框 -->
     <el-popover :disabled="disabled" ref="popover" :placement="placement" popper-class="el-icon-popper" :width="width" v-model="visible" trigger="click">
-      <div class="fs_18 mb-1">基础图标</div>
+      <div class="title">基础图标</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in elIconList" :key="index" @click="selectedIcon(item)">
@@ -15,7 +15,7 @@
         </ul>
       </div>
 
-      <div class="fs_18 mt-1 mb-1">定制图标</div>
+      <div class="title">定制图标</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in customIconList" :key="index" @click="selectedIcon(item)">
@@ -152,6 +152,10 @@ export default {
 .el-icon-popper .icon-dropdown {
   height: 130px;
   overflow-y: auto;
+}
+.title {
+  font-size: 1rem;
+  margin: 5px 0;
 }
 .fas-icon-list {
   list-style-type: none;
