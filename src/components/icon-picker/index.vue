@@ -6,7 +6,7 @@
 
     <!-- 弹出框 -->
     <el-popover :disabled="disabled" ref="popover" :placement="placement" popper-class="el-icon-popper" :width="width" v-model="visible" trigger="click">
-      <div class="title">基础图标</div>
+      <div class="title">{{ $t('iconPicker.titleBasic') }}</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in elIconList" :key="index" @click="selectedIcon(item)">
@@ -15,7 +15,7 @@
         </ul>
       </div>
 
-      <div class="title">定制图标</div>
+      <div class="title">{{ $t('iconPicker.titleCustom') }}</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in customIconList" :key="index" @click="selectedIcon(item)">

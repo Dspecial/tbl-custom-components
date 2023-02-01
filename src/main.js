@@ -2,12 +2,13 @@
  * @Author: dxx
  * @Date: 2022-12-13 13:50:46
  * @LastEditors: dxx
- * @LastEditTime: 2022-12-14 18:43:47
+ * @LastEditTime: 2023-02-01 15:49:15
  */
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui';
 import moment from 'moment';
+import i18n from './i18n/i18n';
 import TblCustomComponents from '@/components/index';  // 引入自定义组件TblCustomComponents的js
 
 import 'element-ui/lib/theme-chalk/index.css'; //element-ui样式表
@@ -19,4 +20,5 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  i18n, // 在全局挂载
 }).$mount('#app')

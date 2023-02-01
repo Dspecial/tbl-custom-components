@@ -33,7 +33,10 @@ export default {
     },
     rangeSeparator: {
       type: String,
-      default: '至',
+      default: () => {
+        console.log(this, 'thiffff');
+        return 'zhi';
+      },
     },
     startPlaceholder: {
       type: String,
@@ -77,7 +80,7 @@ export default {
       currentValue: this.value,
       pickerOptions: this.PickerOptions,
       yesterdayBtn: {
-        text: '昨天',
+        text: this.$t('daterange.yesterdayBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
@@ -87,7 +90,7 @@ export default {
         },
       },
       todayBtn: {
-        text: '今日',
+        text: this.$t('daterange.todayBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
@@ -95,7 +98,7 @@ export default {
         },
       },
       preWeekBtn: {
-        text: '上周',
+        text: this.$t('daterange.preWeekBtn'),
         onClick(picker) {
           const o_sDate = new Date(new Date(new Date().toLocaleDateString()).getTime());
           o_sDate.setTime(o_sDate.getTime() - 3600 * 1000 * 24 * 7);
@@ -117,7 +120,7 @@ export default {
         },
       },
       thisWeekBtn: {
-        text: '本周',
+        text: this.$t('daterange.thisWeekBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
@@ -130,7 +133,7 @@ export default {
         },
       },
       preMonthBtn: {
-        text: '上月',
+        text: this.$t('daterange.preMonthBtn'),
         onClick(picker) {
           const oDate = new Date();
           var year = oDate.getFullYear();
@@ -148,7 +151,7 @@ export default {
         },
       },
       thisMonthBtn: {
-        text: '本月',
+        text: this.$t('daterange.thisMonthBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
@@ -157,7 +160,7 @@ export default {
         },
       },
       last7daysBtn: {
-        text: '过去7天',
+        text: this.$t('daterange.last7daysBtn'),
         onClick(picker) {
           const end = new Date();
           const start = new Date();
@@ -166,7 +169,7 @@ export default {
         },
       },
       last30daysBtn: {
-        text: '过去30天',
+        text: this.$t('daterange.last30daysBtn'),
         onClick(picker) {
           const end = new Date();
           const start = new Date();
@@ -175,7 +178,7 @@ export default {
         },
       },
       last90daysBtn: {
-        text: '过去90天',
+        text: this.$t('daterange.last90daysBtn'),
         onClick(picker) {
           const end = new Date();
           const start = new Date();
