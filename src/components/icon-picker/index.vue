@@ -1,6 +1,6 @@
 <template>
   <div class="ui-fas">
-    <el-input v-model="name" :placeholder="placeholder" ref="input" @focus="_popoverShowFun" v-popover:popover clearable readonly :disabled="disabled">
+    <el-input v-model="name" :placeholder="_placeholder" ref="input" @focus="_popoverShowFun" v-popover:popover clearable readonly :disabled="disabled">
       <template slot="prepend"><i :class="[prefixIcon]" /></template>
     </el-input>
 
@@ -67,10 +67,23 @@ export default {
     },
     placeholder: {
       type: String,
-      default() {
-        return '请选择图标';
-      },
+      // default() {
+      //   return '请选择图标';
+      // },
     },
+  },
+  mounted() {
+    this._updateW();
+    this.$nextTick(() => {
+      on(document, 'mouseup', this._popoverHideFun);
+    });
+  },
+  beforeDestroy() {
+    off(document, 'mouseup', this._popoverHideFun);
+  },
+  created() {
+    this.prefixIcon = this.value ? this.value : 'el-icon-edit';
+    this.name = this.value;
   },
   data() {
     return {
@@ -81,6 +94,23 @@ export default {
       prefixIcon: 'el-icon-edit',
       name: '',
     };
+  },
+  watch: {
+    name: function(val) {
+      setTimeout(() => {
+        this.prefixIcon = val ? val : 'el-icon-edit';
+      }, 200);
+    },
+    value: function(val) {
+      setTimeout(() => {
+        this.name = val;
+      }, 200);
+    },
+  },
+  computed: {
+    _placeholder() {
+      return this.placeholder || this.$t('iconPicker.iconPlaceholder');
+    },
   },
   methods: {
     selectedIcon(item) {
@@ -118,31 +148,6 @@ export default {
       setTimeout(() => {
         this.$refs.popover.updatePopper();
       }, 50);
-    },
-  },
-  mounted() {
-    this._updateW();
-    this.$nextTick(() => {
-      on(document, 'mouseup', this._popoverHideFun);
-    });
-  },
-  beforeDestroy() {
-    off(document, 'mouseup', this._popoverHideFun);
-  },
-  created() {
-    this.prefixIcon = this.value ? this.value : 'el-icon-edit';
-    this.name = this.value;
-  },
-  watch: {
-    name: function(val) {
-      setTimeout(() => {
-        this.prefixIcon = val ? val : 'el-icon-edit';
-      }, 200);
-    },
-    value: function(val) {
-      setTimeout(() => {
-        this.name = val;
-      }, 200);
     },
   },
 };

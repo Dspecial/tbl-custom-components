@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 16:11:52
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-01 10:54:33
+ * @LastEditTime: 2023-02-02 11:57:58
  */
 // 定义 install 方法，接受 Vue 作为参数，如果使用 use 注册插件，则所有的组件都将被注册
 // 导入组件：按需导入时导入文件夹下的index.js文件， 全局导入时导入 .vue文件或者index.js文件都可以
@@ -23,6 +23,7 @@ const components = [
 ];
 
 const install = function (Vue, options = {}) {
+  console.log(options,'options');
   if (options && options.components) {
     components = options.components;
   }
@@ -30,6 +31,10 @@ const install = function (Vue, options = {}) {
   components.forEach(item => {
     Vue.component(item.name, item);
   });
+  
+  Vue.prototype.$CUSTOM = {
+    lang: options.lang || '',
+  };
 };
 
 // 判断是否时直接引入文件，如果是，就不用调用Vue.use，script直接引用

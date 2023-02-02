@@ -2,13 +2,12 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-01 17:19:18
+ * @LastEditTime: 2023-02-02 11:10:49
  */
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN';
 
 const cn = {
   daterange: {
-    rangeSeparator: '至',
     startPlaceholder: '开始日期',
     endPlaceholder: '结束日期',
     yesterdayBtn: '昨日',

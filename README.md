@@ -99,7 +99,7 @@ export default {
 
 - ##### 问题解决
 
-1. btnOption 不配置的话默认所有按钮都显示;
+1. btnOption 不配置的话默认所有按钮都显示，配置为{}空对象时 所有按钮钧不显示;
 
 2. 如使用 picker-options 来限制日期选择范围，或者设置周起始日 firstDayOfWeek，或者设置日期的类名 cellClassName 时，当需要显示快捷按钮，则必须加上 shortcuts: []，否则无快捷按钮；
    不配置 picker-options 时，默认是有快捷按钮的;

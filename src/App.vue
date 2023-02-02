@@ -28,7 +28,7 @@
     <div class="item">
       <p>3. 图标选择器：</p>
       <div style="width:500px">
-        <tbl-icon-picker v-model="iconValue" placeholder="请选择图标" type="wisdom"></tbl-icon-picker>
+        <tbl-icon-picker v-model="iconValue" type="wisdom"></tbl-icon-picker>
       </div>
     </div>
 

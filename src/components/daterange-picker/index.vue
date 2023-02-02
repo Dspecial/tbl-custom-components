@@ -2,13 +2,12 @@
   <!-- 继承el-date-picker的所有属性和方法 -->
   <el-date-picker
     v-model="currentValue"
-    :picker-options="pickerOptions"
+    :picker-options="Object.keys(btnOption).length === 0 ? ' ' : pickerOptions"
     v-bind="$attrs"
     v-on="$listeners"
     :type="type"
-    :range-separator="rangeSeparator"
-    :start-placeholder="startPlaceholder"
-    :end-placeholder="endPlaceholder"
+    :start-placeholder="_startPlaceholder"
+    :end-placeholder="_endPlaceholder"
   >
     <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
       <slot :name="slotName" v-bind="slotProps" />
@@ -31,20 +30,13 @@ export default {
       type: String,
       default: 'datetimerange', // daterange|mouthrange|datetimerange
     },
-    rangeSeparator: {
-      type: String,
-      default: () => {
-        console.log(this, 'thiffff');
-        return 'zhi';
-      },
-    },
     startPlaceholder: {
       type: String,
-      default: '开始日期',
+      // default: '开始日期',
     },
     endPlaceholder: {
       type: String,
-      default: '结束日期',
+      // default: '结束日期',
     },
     btnOption: {
       type: [Object, Boolean],
@@ -62,7 +54,7 @@ export default {
         };
       },
     },
-    PickerOptions: {
+    _pickerOptions: {
       type: [Array, String, Object],
       default: () => {
         return {
@@ -74,11 +66,40 @@ export default {
       },
     },
   },
-
+  created() {},
+  mounted() {
+    if (this.btnOption.isYesterday) {
+      this.pickerOptions.shortcuts.push(this.yesterdayBtn);
+    }
+    if (this.btnOption.isToday) {
+      this.pickerOptions.shortcuts.push(this.todayBtn);
+    }
+    if (this.btnOption.isPreWeek) {
+      this.pickerOptions.shortcuts.push(this.preWeekBtn);
+    }
+    if (this.btnOption.isThisWeek) {
+      this.pickerOptions.shortcuts.push(this.thisWeekBtn);
+    }
+    if (this.btnOption.isPreMonth) {
+      this.pickerOptions.shortcuts.push(this.preMonthBtn);
+    }
+    if (this.btnOption.isThisMonth) {
+      this.pickerOptions.shortcuts.push(this.thisMonthBtn);
+    }
+    if (this.btnOption.isLast7days) {
+      this.pickerOptions.shortcuts.push(this.last7daysBtn);
+    }
+    if (this.btnOption.isLast30days) {
+      this.pickerOptions.shortcuts.push(this.last30daysBtn);
+    }
+    if (this.btnOption.isLast90days) {
+      this.pickerOptions.shortcuts.push(this.last90daysBtn);
+    }
+  },
   data() {
     return {
       currentValue: this.value,
-      pickerOptions: this.PickerOptions,
+      pickerOptions: this._pickerOptions,
       yesterdayBtn: {
         text: this.$t('daterange.yesterdayBtn'),
         onClick(picker) {
@@ -188,36 +209,6 @@ export default {
       },
     };
   },
-  created() {},
-  mounted() {
-    if (this.btnOption.isYesterday) {
-      this.pickerOptions.shortcuts.push(this.yesterdayBtn);
-    }
-    if (this.btnOption.isToday) {
-      this.pickerOptions.shortcuts.push(this.todayBtn);
-    }
-    if (this.btnOption.isPreWeek) {
-      this.pickerOptions.shortcuts.push(this.preWeekBtn);
-    }
-    if (this.btnOption.isThisWeek) {
-      this.pickerOptions.shortcuts.push(this.thisWeekBtn);
-    }
-    if (this.btnOption.isPreMonth) {
-      this.pickerOptions.shortcuts.push(this.preMonthBtn);
-    }
-    if (this.btnOption.isThisMonth) {
-      this.pickerOptions.shortcuts.push(this.thisMonthBtn);
-    }
-    if (this.btnOption.isLast7days) {
-      this.pickerOptions.shortcuts.push(this.last7daysBtn);
-    }
-    if (this.btnOption.isLast30days) {
-      this.pickerOptions.shortcuts.push(this.last30daysBtn);
-    }
-    if (this.btnOption.isLast90days) {
-      this.pickerOptions.shortcuts.push(this.last90daysBtn);
-    }
-  },
   watch: {
     value: {
       handler(newVal, oldVal) {
@@ -226,7 +217,14 @@ export default {
       deep: true,
     },
   },
-
+  computed: {
+    _startPlaceholder() {
+      return this.startPlaceholder || this.$t('daterange.startPlaceholder');
+    },
+    _endPlaceholder() {
+      return this.endPlaceholder || this.$t('daterange.endPlaceholder');
+    },
+  },
   methods: {},
 };
 </script>

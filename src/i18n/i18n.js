@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-01 14:19:51
+ * @LastEditTime: 2023-02-02 12:02:10
  */
 import Vue from 'vue';
 import locale from 'element-ui/lib/locale';
@@ -11,7 +11,7 @@ import messages from './langs';
 
 Vue.use(VueI18n);
 const i18n = new VueI18n({
-  locale: localStorage.lang || 'cn',
+  locale: (Vue.prototype.$CUSTOM || {}).lang || 'cn',
   messages,
 });
 locale.i18n((key, value) => i18n.t(key, value)); // 重点：为了实现element插件的多语言切换

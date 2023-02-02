@@ -2,14 +2,14 @@
   <div class="transfer">
     <div class="transfer-panel">
       <p class="transfer-panel-header">
-        <span>{{ titleTexts && titleTexts[0] }}</span>
+        <span>{{ _titleTexts && _titleTexts[0] }}</span>
         <span>{{ leftSelection.length }}/{{ leftTableData.length }}</span>
       </p>
       <div v-if="showQuery" class="transfer-panel-query">
         <el-form :inline="true" :model="leftQueryCondition" class="query-form">
           <slot name="leftCondition" v-bind:scope="leftQueryCondition"></slot>
           <el-form-item>
-            <el-button type="primary" size="mini" @click="onLeftQuerySubmit()">{{ queryTexts[0] }}</el-button>
+            <el-button type="primary" size="mini" @click="onLeftQuerySubmit()">{{ _queryTexts && _queryTexts[0] }}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -60,14 +60,14 @@
     </div>
     <div class="transfer-panel">
       <p class="transfer-panel-header">
-        <span>{{ titleTexts && titleTexts[1] }}</span>
+        <span>{{ _titleTexts && _titleTexts[1] }}</span>
         <span>{{ rightSelection.length }}/{{ rightTableData.length }}</span>
       </p>
       <div v-if="showQuery" class="transfer-panel-query">
         <el-form :inline="true" :model="rightQueryCondition" class="query-form">
           <slot name="rightCondition" v-bind:scope="rightQueryCondition"></slot>
           <el-form-item>
-            <el-button type="primary" size="mini" @click="onRightQuerySubmit()">{{ queryTexts[1] }}</el-button>
+            <el-button type="primary" size="mini" @click="onRightQuerySubmit()">{{ _queryTexts && _queryTexts[1] }}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -133,11 +133,11 @@ export default {
     // 标题文本
     titleTexts: {
       type: Array,
-      default() {
-        return ['待选项', '已选项'];
-      },
+      // default() {
+      //   return ['待选项', '已选项'];
+      // },
     },
-    // 按钮文本
+    // 左右穿梭的按钮文本
     buttonTexts: {
       type: Array,
       default() {
@@ -147,9 +147,9 @@ export default {
     // 查询按钮文本
     queryTexts: {
       type: Array,
-      default() {
-        return ['查询', '筛选'];
-      },
+      // default() {
+      //   return ['查询', '筛选'];
+      // },
     },
     // 左侧参数
     leftColumns: {
@@ -193,6 +193,9 @@ export default {
       },
     },
   },
+  created() {
+    this.handlePaginationCallBack();
+  },
   data() {
     return {
       leftTableData: [],
@@ -207,10 +210,13 @@ export default {
       rightConditionTemp: undefined,
     };
   },
-  created() {
-    this.handlePaginationCallBack();
-  },
   computed: {
+    _titleTexts() {
+      return this.titleTexts || [this.$t('tableTransfer.titleLeft'), this.$t('tableTransfer.titleRight')];
+    },
+    _queryTexts() {
+      return this.queryTexts || [this.$t('tableTransfer.queryLeft'), this.$t('tableTransfer.queryRight')];
+    },
     hasButtonTexts() {
       return this.buttonTexts.length === 2;
     },
