@@ -151,6 +151,7 @@ export default {
     };
   },
   components: {},
+  mounted() {},
   methods: {
     onChange(val) {
       console.log(val, '获取到绑定的时间范围值');

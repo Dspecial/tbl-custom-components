@@ -45,6 +45,8 @@ import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件
 
 ### 组件使用说明
 
+可全局配置中英文 localStorage.setItem('lang','en'); // en 或者 cn
+
 > #### tbl-daterange-picker 时间范围选择器
 
 - ##### 介绍
