@@ -6,7 +6,7 @@
 
     <!-- 弹出框 -->
     <el-popover :disabled="disabled" ref="popover" :placement="placement" popper-class="el-icon-popper" :width="width" v-model="visible" trigger="click">
-      <div class="title">{{ t('custom.iconPicker.titleBasic') }}</div>
+      <div class="title">{{ titleBasic }}</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in elIconList" :key="index" @click="selectedIcon(item)">
@@ -15,7 +15,7 @@
         </ul>
       </div>
 
-      <div class="title">{{ t('custom.iconPicker.titleCustom') }}</div>
+      <div class="title">{{ titleCustom }}</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in customIconList" :key="index" @click="selectedIcon(item)">
@@ -73,21 +73,10 @@ export default {
       // },
     },
   },
-  mounted() {
-    this._updateW();
-    this.$nextTick(() => {
-      on(document, 'mouseup', this._popoverHideFun);
-    });
-  },
-  beforeDestroy() {
-    off(document, 'mouseup', this._popoverHideFun);
-  },
-  created() {
-    this.prefixIcon = this.value ? this.value : 'el-icon-edit';
-    this.name = this.value;
-  },
   data() {
     return {
+      titleBasic: t('custom.iconPicker.titleBasic'),
+      titleCustom: t('custom.iconPicker.titleCustom'),
       elIconList: elIconList,
       customIconList: this.type == 'noah' ? noahIconList : wisdomIconList,
       visible: false, // popover v-model
@@ -112,6 +101,19 @@ export default {
     _placeholder() {
       return this.placeholder || t('custom.iconPicker.iconPlaceholder');
     },
+  },
+  mounted() {
+    this._updateW();
+    this.$nextTick(() => {
+      on(document, 'mouseup', this._popoverHideFun);
+    });
+  },
+  beforeDestroy() {
+    off(document, 'mouseup', this._popoverHideFun);
+  },
+  created() {
+    this.prefixIcon = this.value ? this.value : 'el-icon-edit';
+    this.name = this.value;
   },
   methods: {
     selectedIcon(item) {
