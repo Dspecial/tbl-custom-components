@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-02 11:23:34
+ * @LastEditTime: 2023-02-06 13:39:27
  */
 import enLocale from 'element-ui/lib/locale/lang/en';
 const en = {

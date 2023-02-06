@@ -6,7 +6,7 @@
 
     <!-- 弹出框 -->
     <el-popover :disabled="disabled" ref="popover" :placement="placement" popper-class="el-icon-popper" :width="width" v-model="visible" trigger="click">
-      <div class="title">{{ $t('iconPicker.titleBasic') }}</div>
+      <div class="title">{{ t('iconPicker.titleBasic') }}</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in elIconList" :key="index" @click="selectedIcon(item)">
@@ -15,7 +15,7 @@
         </ul>
       </div>
 
-      <div class="title">{{ $t('iconPicker.titleCustom') }}</div>
+      <div class="title">{{ t('iconPicker.titleCustom') }}</div>
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in customIconList" :key="index" @click="selectedIcon(item)">
@@ -28,11 +28,13 @@
 </template>
 
 <script>
+import Locale from '../../mixins/locale';
 import elIconList from './iconList/elIconfont';
 import noahIconList from './iconList/noahIconfont';
 import wisdomIconList from './iconList/wisdomIconfont';
 import { off, on } from './utils/dom';
 export default {
+  mixins: [Locale],
   name: 'TblIconPicker',
   props: {
     // 定制图标类型 noah / wisdom
@@ -109,7 +111,7 @@ export default {
   },
   computed: {
     _placeholder() {
-      return this.placeholder || this.$t('iconPicker.iconPlaceholder');
+      return this.placeholder || this.t('iconPicker.iconPlaceholder');
     },
   },
   methods: {

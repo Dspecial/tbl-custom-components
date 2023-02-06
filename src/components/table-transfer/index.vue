@@ -98,7 +98,9 @@
 </template>
 
 <script>
+import Locale from '../../mixins/locale';
 export default {
+  mixins: [Locale],
   name: 'TblTableTransfer',
   props: {
     value: {
@@ -193,9 +195,6 @@ export default {
       },
     },
   },
-  created() {
-    this.handlePaginationCallBack();
-  },
   data() {
     return {
       leftTableData: [],
@@ -212,10 +211,10 @@ export default {
   },
   computed: {
     _titleTexts() {
-      return this.titleTexts || [this.$t('tableTransfer.titleLeft'), this.$t('tableTransfer.titleRight')];
+      return this.titleTexts || [this.t('tableTransfer.titleLeft'), this.t('tableTransfer.titleRight')];
     },
     _queryTexts() {
-      return this.queryTexts || [this.$t('tableTransfer.queryLeft'), this.$t('tableTransfer.queryRight')];
+      return this.queryTexts || [this.t('tableTransfer.queryLeft'), this.t('tableTransfer.queryRight')];
     },
     hasButtonTexts() {
       return this.buttonTexts.length === 2;
@@ -276,6 +275,10 @@ export default {
       return this.rightTableData;
     },
   },
+  created() {
+    this.handlePaginationCallBack();
+  },
+  mounted() {},
   methods: {
     handleLeftSelectionChange(selection) {
       this.leftSelection = selection;
