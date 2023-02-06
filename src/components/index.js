@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 16:11:52
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-06 11:23:33
+ * @LastEditTime: 2023-02-06 14:31:40
  */
 // 定义 install 方法，接受 Vue 作为参数，如果使用 use 注册插件，则所有的组件都将被注册
 // 导入组件：按需导入时导入文件夹下的index.js文件， 全局导入时导入 .vue文件或者index.js文件都可以
@@ -50,7 +50,5 @@ export {
 
 export default { 
   version: packageInfo.version,
-  locale: locale.use,
-  i18n: locale.i18n,
   install,
 };

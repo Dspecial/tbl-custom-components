@@ -1,4 +1,15 @@
-import { hasOwn } from 'element-ui/src/utils/util';
+/*
+ * @Author: dxx
+ * @Date: 1985-10-26 16:15:00
+ * @LastEditors: dxx
+ * @LastEditTime: 2023-02-06 14:55:06
+ */
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
+function hasOwn(obj, key) {
+  return hasOwnProperty.call(obj, key);
+};
 
 const RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 /**

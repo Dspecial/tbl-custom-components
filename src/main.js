@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 13:50:46
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-06 13:41:59
+ * @LastEditTime: 2023-02-06 14:25:27
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -13,7 +13,7 @@ import locale from '@/locale/lang/en'
 
 import 'element-ui/lib/theme-chalk/index.css'; //element-ui样式表
 
-Vue.use(ElementUI, { size: 'small', zIndex: 3000, locale }); // 声明使用ElementUI
+Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
 Vue.use(TblCustomComponents,{ locale }); // 声明使用TblCustomComponents自定义组件
 Vue.prototype.$moment = moment;
 Vue.config.productionTip = false;

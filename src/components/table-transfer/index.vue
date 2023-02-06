@@ -211,10 +211,10 @@ export default {
   },
   computed: {
     _titleTexts() {
-      return this.titleTexts || [this.t('tableTransfer.titleLeft'), this.t('tableTransfer.titleRight')];
+      return this.titleTexts || [this.t('custom.tableTransfer.titleLeft'), this.t('custom.tableTransfer.titleRight')];
     },
     _queryTexts() {
-      return this.queryTexts || [this.t('tableTransfer.queryLeft'), this.t('tableTransfer.queryRight')];
+      return this.queryTexts || [this.t('custom.tableTransfer.queryLeft'), this.t('custom.tableTransfer.queryRight')];
     },
     hasButtonTexts() {
       return this.buttonTexts.length === 2;
