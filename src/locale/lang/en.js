@@ -2,13 +2,13 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-06 14:48:03
+ * @LastEditTime: 2023-02-06 17:49:52
  */
 export default {
   custom: {
     daterange: {
-      startPlaceholder: 'Start date',
-      endPlaceholder: 'End date',
+      startPlaceholder: 'Start Date',
+      endPlaceholder: 'End Date',
       yesterdayBtn: 'Yesterday',
       todayBtn: 'Toady',
       preWeekBtn: 'Last Week',

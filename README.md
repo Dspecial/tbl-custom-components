@@ -47,7 +47,7 @@ import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件
 
 ```
 import TblCustomComponents from 'tbl-custom-components';  // 引入自定义组件
-import locale from 'tbl-custom-components/src/locale/lang/en'; // 配置自定义组件的国际化
+import locale from 'tbl-custom-components/lib/locale/lang/en'; // 配置自定义组件的国际化
 Vue.use(TblCustomComponents,{ locale }); // 声明使用TblComponents自定义组件并配置国际化
 
 import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表

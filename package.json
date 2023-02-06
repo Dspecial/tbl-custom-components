@@ -1,12 +1,13 @@
 {
   "name": "tbl-custom-components",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "private": false,
-  "main": "dist/tbl-custom-components.umd.min.js",
+  "license": "MIT",
+  "main": "lib/tbl-custom-components.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lib": "vue-cli-service build  --target lib --entry src/components/index.js"
+    "lib": "vue-cli-service build  --target lib --dest lib src/components/index.js"
   },
   "dependencies": {
     "deepmerge": "^4.3.0",
