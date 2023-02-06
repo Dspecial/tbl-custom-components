@@ -12,9 +12,8 @@
 </template>
 
 <script>
-import Locale from '../../mixins/locale';
+import { t } from '../../locale/index';
 export default {
-  mixins: [Locale],
   name: 'TblTooltipOver',
   props: {
     // 显示的文字内容

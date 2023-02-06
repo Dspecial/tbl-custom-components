@@ -98,9 +98,8 @@
 </template>
 
 <script>
-import Locale from '../../mixins/locale';
+import { t } from '../../locale/index';
 export default {
-  mixins: [Locale],
   name: 'TblTableTransfer',
   props: {
     value: {
@@ -211,10 +210,10 @@ export default {
   },
   computed: {
     _titleTexts() {
-      return this.titleTexts || [this.t('custom.tableTransfer.titleLeft'), this.t('custom.tableTransfer.titleRight')];
+      return this.titleTexts || [t('custom.tableTransfer.titleLeft'), t('custom.tableTransfer.titleRight')];
     },
     _queryTexts() {
-      return this.queryTexts || [this.t('custom.tableTransfer.queryLeft'), this.t('custom.tableTransfer.queryRight')];
+      return this.queryTexts || [t('custom.tableTransfer.queryLeft'), t('custom.tableTransfer.queryRight')];
     },
     hasButtonTexts() {
       return this.buttonTexts.length === 2;

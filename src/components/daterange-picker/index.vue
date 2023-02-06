@@ -16,9 +16,8 @@
 </template>
 
 <script>
-import Locale from '../../mixins/locale';
+import { t } from '../../locale/index';
 export default {
-  mixins: [Locale],
   name: 'TblDaterangePicker',
   components: {},
   props: {
@@ -103,7 +102,7 @@ export default {
       currentValue: this.value,
       pickerOptions: this._pickerOptions,
       yesterdayBtn: {
-        text: this.t('custom.daterange.yesterdayBtn'),
+        text: t('custom.daterange.yesterdayBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
@@ -113,7 +112,7 @@ export default {
         },
       },
       todayBtn: {
-        text: this.t('custom.daterange.todayBtn'),
+        text: t('custom.daterange.todayBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
@@ -121,7 +120,7 @@ export default {
         },
       },
       preWeekBtn: {
-        text: this.t('custom.daterange.preWeekBtn'),
+        text: t('custom.daterange.preWeekBtn'),
         onClick(picker) {
           const o_sDate = new Date(new Date(new Date().toLocaleDateString()).getTime());
           o_sDate.setTime(o_sDate.getTime() - 3600 * 1000 * 24 * 7);
@@ -143,7 +142,7 @@ export default {
         },
       },
       thisWeekBtn: {
-        text: this.t('custom.daterange.thisWeekBtn'),
+        text: t('custom.daterange.thisWeekBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
@@ -156,7 +155,7 @@ export default {
         },
       },
       preMonthBtn: {
-        text: this.t('custom.daterange.preMonthBtn'),
+        text: t('custom.daterange.preMonthBtn'),
         onClick(picker) {
           const oDate = new Date();
           var year = oDate.getFullYear();
@@ -174,7 +173,7 @@ export default {
         },
       },
       thisMonthBtn: {
-        text: this.t('custom.daterange.thisMonthBtn'),
+        text: t('custom.daterange.thisMonthBtn'),
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
@@ -183,7 +182,7 @@ export default {
         },
       },
       last7daysBtn: {
-        text: this.t('custom.daterange.last7daysBtn'),
+        text: t('custom.daterange.last7daysBtn'),
         onClick(picker) {
           const end = new Date();
           const start = new Date();
@@ -192,7 +191,7 @@ export default {
         },
       },
       last30daysBtn: {
-        text: this.t('custom.daterange.last30daysBtn'),
+        text: t('custom.daterange.last30daysBtn'),
         onClick(picker) {
           const end = new Date();
           const start = new Date();
@@ -201,7 +200,7 @@ export default {
         },
       },
       last90daysBtn: {
-        text: this.t('custom.daterange.last90daysBtn'),
+        text: t('custom.daterange.last90daysBtn'),
         onClick(picker) {
           const end = new Date();
           const start = new Date();
@@ -221,10 +220,10 @@ export default {
   },
   computed: {
     _startPlaceholder() {
-      return this.startPlaceholder || this.t('custom.daterange.startPlaceholder');
+      return this.startPlaceholder || t('custom.daterange.startPlaceholder');
     },
     _endPlaceholder() {
-      return this.endPlaceholder || this.t('custom.daterange.endPlaceholder');
+      return this.endPlaceholder || t('custom.daterange.endPlaceholder');
     },
   },
   methods: {},

@@ -28,13 +28,12 @@
 </template>
 
 <script>
-import Locale from '../../mixins/locale';
+import { t } from '../../locale/index';
 import elIconList from './iconList/elIconfont';
 import noahIconList from './iconList/noahIconfont';
 import wisdomIconList from './iconList/wisdomIconfont';
 import { off, on } from './utils/dom';
 export default {
-  mixins: [Locale],
   name: 'TblIconPicker',
   props: {
     // 定制图标类型 noah / wisdom
@@ -111,7 +110,7 @@ export default {
   },
   computed: {
     _placeholder() {
-      return this.placeholder || this.t('custom.iconPicker.iconPlaceholder');
+      return this.placeholder || t('custom.iconPicker.iconPlaceholder');
     },
   },
   methods: {
