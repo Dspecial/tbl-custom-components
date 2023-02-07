@@ -1,6 +1,6 @@
 <template>
   <div class="text-tooltip">
-    <el-tooltip v-bind="$attrs" v-on="$listeners" :disabled="isShowTooltip" :content="content">
+    <el-tooltip v-bind="$attrs" v-on="$listeners" :disabled="isShowTooltip" :content="content.toString()">
       <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
         <slot :name="slotName" v-bind="slotProps" />
       </template>
