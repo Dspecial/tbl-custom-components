@@ -5,6 +5,7 @@
     <div class="item">
       <p>1. 时间范围选择：</p>
       <tbl-daterange-picker
+        lang="en"
         v-model="defaultValue"
         align="left"
         format="yyyy-MM-dd HH:mm:ss"
@@ -28,7 +29,7 @@
     <div class="item">
       <p>3. 图标选择器：</p>
       <div style="width:500px">
-        <tbl-icon-picker v-model="iconValue" type="wisdom"></tbl-icon-picker>
+        <tbl-icon-picker lang="en" v-model="iconValue" type="wisdom"></tbl-icon-picker>
       </div>
     </div>
 
@@ -37,14 +38,13 @@
       <p>4. 表格穿梭框：</p>
       <div style="width:800px">
         <tbl-table-transfer
+          lang="en"
           class="eltTransfer"
           ref="eltTransfer"
           :show-query="true"
           :show-pagination="true"
           :pagination-call-back="paginationCallBack"
           :left-columns="leftColumns"
-          :title-texts="['全部设备', '已绑设备']"
-          :query-texts="['筛选', '筛选']"
           :table-row-key="row => row.id"
           maxHeight="900px"
           minHeight="470px"

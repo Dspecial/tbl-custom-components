@@ -28,7 +28,9 @@
 </template>
 
 <script>
-import { t } from '../../locale/index';
+import { use, t } from '../../locale/index';
+import en from '../../locale/lang/en';
+import cn from '../../locale/lang/zh-CN';
 import elIconList from './iconList/elIconfont';
 import noahIconList from './iconList/noahIconfont';
 import wisdomIconList from './iconList/wisdomIconfont';
@@ -36,6 +38,10 @@ import { off, on } from './utils/dom';
 export default {
   name: 'TblIconPicker',
   props: {
+    lang: {
+      type: String,
+      default: 'cn', // en|cn
+    },
     // 定制图标类型 noah / wisdom
     type: {
       type: String,
@@ -75,8 +81,8 @@ export default {
   },
   data() {
     return {
-      titleBasic: t('custom.iconPicker.titleBasic'),
-      titleCustom: t('custom.iconPicker.titleCustom'),
+      titleBasic: '',
+      titleCustom: '',
       elIconList: elIconList,
       customIconList: this.type == 'noah' ? noahIconList : wisdomIconList,
       visible: false, // popover v-model
@@ -99,10 +105,22 @@ export default {
   },
   computed: {
     _placeholder() {
+      if (this.lang == 'en') {
+        use(en);
+      } else {
+        use(cn);
+      }
       return this.placeholder || t('custom.iconPicker.iconPlaceholder');
     },
   },
   mounted() {
+    if (this.lang == 'en') {
+      use(en);
+    } else {
+      use(cn);
+    }
+    this.titleBasic = t('custom.iconPicker.titleBasic');
+    this.titleCustom = t('custom.iconPicker.titleCustom');
     this._updateW();
     this.$nextTick(() => {
       on(document, 'mouseup', this._popoverHideFun);

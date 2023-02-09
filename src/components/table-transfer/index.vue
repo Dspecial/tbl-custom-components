@@ -98,10 +98,16 @@
 </template>
 
 <script>
-import { t } from '../../locale/index';
+import { use, t } from '../../locale/index';
+import en from '../../locale/lang/en';
+import cn from '../../locale/lang/zh-CN';
 export default {
   name: 'TblTableTransfer',
   props: {
+    lang: {
+      type: String,
+      default: 'cn', // en|cn
+    },
     value: {
       type: Array,
       default() {
@@ -210,9 +216,19 @@ export default {
   },
   computed: {
     _titleTexts() {
+      if (this.lang == 'en') {
+        use(en);
+      } else {
+        use(cn);
+      }
       return this.titleTexts || [t('custom.tableTransfer.titleLeft'), t('custom.tableTransfer.titleRight')];
     },
     _queryTexts() {
+      if (this.lang == 'en') {
+        use(en);
+      } else {
+        use(cn);
+      }
       return this.queryTexts || [t('custom.tableTransfer.queryLeft'), t('custom.tableTransfer.queryRight')];
     },
     hasButtonTexts() {
@@ -275,9 +291,20 @@ export default {
     },
   },
   created() {
+    if (this.lang == 'en') {
+      use(en);
+    } else {
+      use(cn);
+    }
     this.handlePaginationCallBack();
   },
-  mounted() {},
+  mounted() {
+    if (this.lang == 'en') {
+      use(en);
+    } else {
+      use(cn);
+    }
+  },
   methods: {
     handleLeftSelectionChange(selection) {
       this.leftSelection = selection;

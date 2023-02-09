@@ -12,10 +12,16 @@
 </template>
 
 <script>
-import { t } from '../../locale/index';
+import { use, t } from '../../locale/index';
+import en from '../../locale/lang/en';
+import cn from '../../locale/lang/zh-CN';
 export default {
   name: 'TblTooltipOver',
   props: {
+    lang: {
+      type: String,
+      default: 'cn', // en|cn
+    },
     // 显示的文字内容
     content: {
       type: [String, Number],
@@ -34,6 +40,13 @@ export default {
     return {
       isShowTooltip: true,
     };
+  },
+  created() {
+    if (this.lang == 'en') {
+      use(en);
+    } else {
+      use(cn);
+    }
   },
   methods: {
     onMouseOver(str) {

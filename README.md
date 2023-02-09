@@ -46,16 +46,16 @@ import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件
 - ##### 配置国际化
 
 ```
+// 全局配置
 import TblCustomComponents from 'tbl-custom-components';  // 引入自定义组件
-import locale from 'tbl-custom-components/lib/locale/lang/en'; // 配置自定义组件的国际化
+import locale from 'tbl-custom-components/lib/locale/lang/en'; // 全局配置自定义组件的国际化
 Vue.use(TblCustomComponents,{ locale }); // 声明使用TblComponents自定义组件并配置国际化
 
 import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
+
 ```
 
 ### 组件使用说明
-
-可全局配置中英文 localStorage.setItem('lang','en'); // en 或者 cn
 
 > #### tbl-daterange-picker 时间范围选择器
 
@@ -69,6 +69,7 @@ import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件
 
 ```
 <tbl-daterange-picker
+  lang="en"
   v-model="defaultValue"
   align="left"
   format="yyyy-MM-dd HH:mm:ss"
@@ -118,6 +119,10 @@ export default {
 
 3. picker-options 所有属性和参数 详见 [参考地址](https://element.eleme.cn/#/zh-CN/component/datetime-picker#picker-options)
 
+4. 继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性和方法;
+
+5. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
 > #### tbl-tooltip-over 文字超出范围
 
 - ##### 介绍
@@ -137,7 +142,7 @@ export default {
   name: 'App',
   data() {
     return {
-        content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
+      content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
     }
   },
 }
@@ -146,7 +151,10 @@ export default {
 - ##### 问题解决
 
 1. content 暂时不能作为 slot 进行自定义，后期优化;
-2.
+
+2. 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip) 的所有属性和方法;
+
+3. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-icon-picker 图标选择器
 
@@ -172,7 +180,10 @@ export default {
 - ##### 问题解决
 
 1. type 可配置成 'wisdom'/'noah' ,默认 'noah',需要在工程项目中事先引入对应的图标库，方可使用;
+
 2. placeholder（占位文字:继承 input）、disabled（是否禁用：继承 input）、placement（弹出框位置：继承 popover）等都可配
+
+3. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-table-transfer 表格穿梭框
 
@@ -354,3 +365,5 @@ export default {
    queryTexts（查询按钮文本|数组（数组中字符串））
    leftColumns（左侧参数|数组）
    rightColumns（右侧参数|数组）
+
+2. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
