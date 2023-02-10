@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-02-06 18:32:34
+ * @LastEditTime: 2023-02-10 18:28:37
  */
 export default {
   custom: {
@@ -10,7 +10,7 @@ export default {
       startPlaceholder: 'Start Date',
       endPlaceholder: 'End Date',
       yesterdayBtn: 'Yesterday',
-      todayBtn: 'Toady',
+      todayBtn: 'Today',
       preWeekBtn: 'Last Week',
       thisWeekBtn: 'This Week',
       preMonthBtn: 'Last Month',
