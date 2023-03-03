@@ -1,11 +1,13 @@
 <template>
   <div class="text-tooltip">
-    <el-tooltip v-bind="$attrs" v-on="$listeners" :disabled="isShowTooltip" :content="content.toString()">
-      <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
-        <slot :name="slotName" v-bind="slotProps" />
-      </template>
+    <el-tooltip v-bind="$attrs" v-on="$listeners" :disabled="isShowTooltip">
+      <div slot="content">
+        <slot name="content">{{ content }}</slot>
+      </div>
       <p class="over-flow" @mouseover="onMouseOver(refName)">
-        <span :ref="refName">{{ content }}</span>
+        <span :ref="refName">
+          <slot name="contentOver">{{ content }}</slot>
+        </span>
       </p>
     </el-tooltip>
   </div>

@@ -2,6 +2,9 @@
 node_modules/
 public/
 dist/
+src/components
+src/assets
+src/main.js
 vue.config.js
 babel.config.js
 jsconfig.json

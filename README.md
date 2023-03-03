@@ -110,7 +110,7 @@ export default {
 }
 ```
 
-- ##### 问题解决
+- ##### 问题解决、配置项、属性等
 
 1. btnOption 不配置的话默认所有按钮都显示，配置为{}空对象时 所有按钮钧不显示;
 
@@ -135,7 +135,10 @@ export default {
 
 ```
 <div style="width:500px">
-  <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
+  <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip">
+    <!-- <span slot="content" style="color:#00f;">{{ content }}</span> -->
+    <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content }}</span>
+  </tbl-tooltip-over>
 </div>
 
 export default {
@@ -148,13 +151,15 @@ export default {
 }
 ```
 
-- ##### 问题解决
+- ##### 问题解决、配置项、属性等
 
-1. content 暂时不能作为 slot 进行自定义，后期优化;
+1. 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip) 的所有属性和方法;
 
-2. 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip) 的所有属性和方法;
+2. slot 插槽 1：content: 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip)的 content 属性，可用来显示 tooltop 的弹出层
 
-3. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+3. slot 插槽 2：contentOver 用来页面显示（即有省略号的那部分）
+
+4. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-icon-picker 图标选择器
 
@@ -177,7 +182,7 @@ export default {
 }
 ```
 
-- ##### 问题解决
+- ##### 问题解决、配置项、属性等
 
 1. type 可配置成 'wisdom'/'noah' ,默认 'noah',需要在工程项目中事先引入对应的图标库，方可使用;
 
@@ -349,7 +354,7 @@ export default {
 }
 ```
 
-- ##### 问题解决
+- ##### 问题解决、配置项、属性等
 
 1. 可配参数：
    maxHeight（表格最大高度|字符串）

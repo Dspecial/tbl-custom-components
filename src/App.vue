@@ -21,7 +21,10 @@
     <div class="item">
       <p>2. 超出范围显示...并提示tips：</p>
       <div style="width:500px">
-        <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
+        <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip">
+          <!-- <span slot="content" style="color:#00f;">{{ content }}</span> -->
+          <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content }}</span>
+        </tbl-tooltip-over>
       </div>
     </div>
 
