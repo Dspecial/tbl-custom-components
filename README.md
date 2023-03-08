@@ -135,9 +135,12 @@ export default {
 
 ```
 <div style="width:500px">
-  <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip">
-    <!-- <span slot="content" style="color:#00f;">{{ content }}</span> -->
-    <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content }}</span>
+  <p>2.1 无slot：</p>
+  <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
+  <p>2.1 有slot：</p>
+  <tbl-tooltip-over refName="tooltipOver" effect="dark" popper-class="test-tooltip">
+    <span slot="content" style="color:#00f;">{{ content2 }}</span>
+    <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content1 }}</span>
   </tbl-tooltip-over>
 </div>
 
@@ -146,6 +149,8 @@ export default {
   data() {
     return {
       content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
+      content1: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
+      content2: 112233445566,
     }
   },
 }
