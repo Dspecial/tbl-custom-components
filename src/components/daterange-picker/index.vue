@@ -169,7 +169,7 @@ export default {
         var thisDay = start.getDay();
         var thisDate = start.getDate();
         if (thisDay != 0) {
-          start.setDate(thisDate - thisDay + 1);
+          start.setDate(thisDate - thisDay);
         }
         picker.$emit('pick', [start, end]);
       },

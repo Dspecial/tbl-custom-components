@@ -159,7 +159,7 @@ export default {
 
 3. slot 插槽 2：contentOver 用来页面显示（即有省略号的那部分）
 
-4. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+4. lang （国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-icon-picker 图标选择器
 
