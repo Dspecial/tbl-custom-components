@@ -112,16 +112,16 @@ export default {
 
 - ##### 问题解决、配置项、属性等
 
-1. btnOption 不配置的话默认所有按钮都显示，配置为{}空对象时 所有按钮钧不显示;
+1. btnOption 不配置的话默认所有按钮都显示，配置为{}空对象时 所有按钮钧不显示；
 
 2. 如使用 picker-options 来限制日期选择范围，或者设置周起始日 firstDayOfWeek，或者设置日期的类名 cellClassName 时，当需要显示快捷按钮，则必须加上 shortcuts: []，否则无快捷按钮；
-   不配置 picker-options 时，默认是有快捷按钮的;
+   不配置 picker-options 时，默认是有快捷按钮的；
 
-3. picker-options 所有属性和参数 详见 [参考地址](https://element.eleme.cn/#/zh-CN/component/datetime-picker#picker-options)
+3. picker-options 所有属性和参数 详见 [参考地址](https://element.eleme.cn/#/zh-CN/component/datetime-picker#picker-options);
 
-4. 继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性和方法;
+4. 继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性和方法；
 
-5. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+5. lang（国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-tooltip-over 文字超出范围
 
@@ -139,7 +139,7 @@ export default {
   <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
   <p>2.1 有slot：</p>
   <tbl-tooltip-over refName="tooltipOver" effect="dark" popper-class="test-tooltip">
-    <span slot="content" style="color:#00f;">{{ content2 }}</span>
+    <span slot="contentTip" style="color:#00f;">{{ content2 }}</span>
     <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content1 }}</span>
   </tbl-tooltip-over>
 </div>
@@ -149,7 +149,7 @@ export default {
   data() {
     return {
       content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
-      content1: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
+      content1: `恶风读wùfēng。指病人遇风觉冷，避风则缓解之症。外感内伤俱可见恶风之证。指病邪，《素问·脉要精微论》：“来徐去疾，上虚下实`,
       content2: 112233445566,
     }
   },
@@ -158,13 +158,15 @@ export default {
 
 - ##### 问题解决、配置项、属性等
 
-1. 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip) 的所有属性和方法;
+1. 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip) 的所有属性和方法；
 
-2. slot 插槽 1：content: 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip)的 content 属性，可用来显示 tooltop 的弹出层
+2. content（显示文字|字符串/数值）：文本显示；
 
-3. slot 插槽 2：contentOver 用来页面显示（即有省略号的那部分）
+3. slot 插槽 1: contentTip 可用来显示 tooltip 的弹出层；
 
-4. lang （国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+4. slot 插槽 2: contentOver 用来页面显示（即有省略号的那部分）；
+
+5. lang（国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-icon-picker 图标选择器
 
@@ -189,11 +191,11 @@ export default {
 
 - ##### 问题解决、配置项、属性等
 
-1. type 可配置成 'wisdom'/'noah' ,默认 'noah',需要在工程项目中事先引入对应的图标库，方可使用;
+1. type 可配置成 'wisdom'/'noah' ,默认 'noah',需要在工程项目中事先引入对应的图标库，方可使用；
 
-2. placeholder（占位文字:继承 input）、disabled（是否禁用：继承 input）、placement（弹出框位置：继承 popover）等都可配
+2. placeholder（占位文字:继承 input）、disabled（是否禁用：继承 input）、placement（弹出框位置：继承 popover）等都可配；
 
-3. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+3. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
 > #### tbl-table-transfer 表格穿梭框
 
@@ -374,6 +376,6 @@ export default {
    buttonTexts（按钮文本|数组（数组中字符串））
    queryTexts（查询按钮文本|数组（数组中字符串））
    leftColumns（左侧参数|数组）
-   rightColumns（右侧参数|数组）
+   rightColumns（右侧参数|数组）；
 
 2. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置

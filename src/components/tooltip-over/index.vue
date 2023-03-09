@@ -2,11 +2,13 @@
   <div class="text-tooltip">
     <el-tooltip v-bind="$attrs" v-on="$listeners" :disabled="isShowTooltip">
       <div slot="content">
-        <slot name="content">{{ content }}</slot>
+        <slot name="contentTip" v-if="$slots.contentTip"></slot>
+        <span v-else>{{ showHtml }}</span>
       </div>
       <p class="over-flow" @mouseover="onMouseOver(refName)">
         <span :ref="refName">
-          <slot name="contentOver">{{ content }}</slot>
+          <slot name="contentOver" v-if="$slots.contentOver"></slot>
+          <span v-else>{{ showHtml }}</span>
         </span>
       </p>
     </el-tooltip>
@@ -42,6 +44,17 @@ export default {
     return {
       isShowTooltip: true,
     };
+  },
+  computed: {
+    showHtml() {
+      let text = '';
+      if (this.$slots.contentOver) {
+        text = this.$slots.contentOver[0].children[0].text;
+      } else if (this.$slots.contentTip) {
+        text = this.$slots.contentTip[0].children[0].text;
+      }
+      return this.content || text;
+    },
   },
   created() {
     if (this.lang == 'en') {

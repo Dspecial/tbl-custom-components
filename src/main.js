@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 13:50:46
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-08 10:30:58
+ * @LastEditTime: 2023-03-08 11:26:48
  */
 import Vue from 'vue'
 import App from './App.vue'
