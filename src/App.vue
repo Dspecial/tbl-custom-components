@@ -1,6 +1,25 @@
 <template>
   <div id="app">
     <h3>示例如下</h3>
+    <!-- cron表达式： -->
+    <div class="item">
+      <p>5. cron表达式：</p>
+      <div style="width:800px">
+        <el-form :model="form" label-width="80px">
+          <el-form-item label="Cron">
+            <el-input v-model="form.cronExpression" auto-complete="off">
+              <el-button slot="append" v-if="!showCronBox" icon="el-icon-arrow-down" @click="showCronBox = true" title="打开图形配置"></el-button>
+              <el-button slot="append" v-else icon="el-icon-arrow-up" @click="showCronBox = false" title="关闭图形配置"></el-button>
+            </el-input>
+          </el-form-item>
+          <el-form-item style="margin-top: -10px; margin-bottom:0px;">
+            <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="en"></tbl-cron>
+            <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
+          </el-form-item>
+        </el-form>
+      </div>
+    </div>
+
     <!-- 时间范围选择： -->
     <div class="item">
       <p>1. 时间范围选择：</p>
@@ -87,6 +106,7 @@ export default {
   name: 'App',
   data() {
     return {
+      // daterange-picker
       defaultValue: [this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss'), this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss')],
       btnOption: {
         isYesterday: true, // 显示 昨日 按钮
@@ -103,11 +123,14 @@ export default {
           return date.getTime() > Date.now();
         },
       },
+
+      // tooltip-over
       content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
       content1: `恶风读wùfēng。指病人遇风觉冷，避风则缓解之症。外感内伤俱可见恶风之证。指病邪，《素问·脉要精微论》：“来徐去疾，上虚下实`,
       content2: 112233445566,
       iconValue: '',
 
+      // table-Transfer
       // 表头
       leftColumns: [
         { label: '设备名称', id: 'deviceName' },
@@ -156,6 +179,12 @@ export default {
           state: 1,
         },
       ],
+
+      // cron
+      showCronBox: false,
+      form: {
+        cronExpression: '',
+      },
     };
   },
   components: {},
