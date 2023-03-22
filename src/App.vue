@@ -92,7 +92,7 @@
             </el-input>
           </el-form-item>
           <el-form-item style="margin-top: -10px; margin-bottom:0px;">
-            <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="cn"></tbl-cron>
+            <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="en"></tbl-cron>
             <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
           </el-form-item>
         </el-form>
