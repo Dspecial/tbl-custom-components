@@ -378,4 +378,43 @@ export default {
    leftColumns（左侧参数|数组）
    rightColumns（右侧参数|数组）；
 
-2. lang (国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+2. lang （国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+> #### tbl-cron cron 表达式
+
+- ##### 介绍
+
+基于[vue-cron](https://gitee.com/lindeyi/vue-cron?_from=gitee_search) 组件进行二次开发。
+
+- ##### 使用示例
+
+```
+<el-form :model="form" label-width="80px">
+  <el-form-item label="Cron">
+    <el-input v-model="form.cronExpression" auto-complete="off">
+      <el-button slot="append" v-if="!showCronBox" icon="el-icon-arrow-down" @click="showCronBox = true" title="打开配置"></el-button>
+      <el-button slot="append" v-else icon="el-icon-arrow-up" @click="showCronBox = false" title="关闭配置"></el-button>
+    </el-input>
+  </el-form-item>
+  <el-form-item style="margin-top: -10px; margin-bottom:0px;">
+    <tbl-cron v-if="showCronBox" v-model="form.cronExpression"></tbl-cron>
+    <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
+  </el-form-item>
+</el-form>
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      showCronBox: false,
+      form: {
+        cronExpression: '',
+      },
+    }
+  },
+}
+```
+
+- ##### 问题解决、配置项、属性等
+
+1. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
