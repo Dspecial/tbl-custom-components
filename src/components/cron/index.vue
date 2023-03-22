@@ -201,5 +201,9 @@ export default {
   .el-tab-pane .item-cell:last-child{
     margin-bottom: 0;
   }
+  .checkbox-cell{
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
 }
 </style>

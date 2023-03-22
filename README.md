@@ -2,7 +2,7 @@
 
 [项目地址](https://github.com/Dspecial/tbl-custom-components.git)
 
-基于`element-ui@2.15.11` 二次封装一些小组件，提高插拔性，便于多项目使用
+基于`element-ui@2.15.13` 二次封装一些小组件，提高插拔性，便于多项目使用
 
 ### 安装文档
 
@@ -389,18 +389,14 @@ export default {
 - ##### 使用示例
 
 ```
-<el-form :model="form" label-width="80px">
-  <el-form-item label="Cron">
-    <el-input v-model="form.cronExpression" auto-complete="off">
-      <el-button slot="append" v-if="!showCronBox" icon="el-icon-arrow-down" @click="showCronBox = true" title="打开配置"></el-button>
-      <el-button slot="append" v-else icon="el-icon-arrow-up" @click="showCronBox = false" title="关闭配置"></el-button>
-    </el-input>
-  </el-form-item>
-  <el-form-item style="margin-top: -10px; margin-bottom:0px;">
-    <tbl-cron v-if="showCronBox" v-model="form.cronExpression"></tbl-cron>
-    <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
-  </el-form-item>
-</el-form>
+<div style="width:800px">
+  <el-input v-model="form.cronExpression" auto-complete="off">
+    <el-button slot="append" v-if="!showCronBox" icon="el-icon-arrow-down" @click="showCronBox = true" title="打开表达式配置"></el-button>
+    <el-button slot="append" v-else icon="el-icon-arrow-up" @click="showCronBox = false" title="关闭表达式配置"></el-button>
+  </el-input>
+  <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="en"></tbl-cron>
+  <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
+</div>
 
 export default {
   name: 'App',

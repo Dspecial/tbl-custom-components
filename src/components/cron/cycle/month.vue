@@ -33,7 +33,7 @@
     <!-- 指定 -->
     <div class="item-cell">
       <el-radio v-model="type" label="4" size="mini" border>{{ TEXT.specific }}</el-radio>
-      <el-checkbox-group v-model="appoint" style="margin-left: 15px;">
+      <el-checkbox-group v-model="appoint" class="checkbox-cell">
         <el-checkbox @change="type = '4'" v-for="i in 12" :key="i" :label="i"></el-checkbox>
       </el-checkbox-group>
     </div>
