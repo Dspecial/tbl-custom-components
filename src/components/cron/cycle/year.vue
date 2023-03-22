@@ -11,13 +11,15 @@
     <!-- 周期 -->
     <div class="item-cell">
       <el-radio v-model="type" label="2" size="mini" border>{{ TEXT.cycle }}</el-radio>
-      <span class="span-left">{{ TEXT.from }}</span>
-      <el-input-number @change="type = '2'" v-model="cycle.start" :min="2000" size="mini" style="width: 100px;"></el-input-number>
-      <span class="span-left2">{{ TEXT.to }}</span>
-      <el-input-number @change="type = '2'" v-model="cycle.end" :min="2000" size="mini" style="width: 100px;"></el-input-number>
-      <template v-if="lang == 'cn'">
-        {{ itemLabel }}
-      </template>
+      <div>
+        <span class="span-left">{{ TEXT.from }}</span>
+        <el-input-number @change="type = '2'" v-model="cycle.start" :min="2000" size="mini" style="width: 100px;"></el-input-number>
+        <span class="span-left2">{{ TEXT.to }}</span>
+        <el-input-number @change="type = '2'" v-model="cycle.end" :min="2000" size="mini" style="width: 100px;"></el-input-number>
+        <template v-if="lang == 'cn'">
+          {{ itemLabel }}
+        </template>
+      </div>
     </div>
   </div>
 </template>

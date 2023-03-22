@@ -190,6 +190,7 @@ export default {
   }
   .el-tab-pane .item-cell{
     margin-bottom: 10px;
+    display: flex;
     .span-left{
       margin: 0 8px 0 15px;
     }

@@ -83,7 +83,7 @@
     <!-- cron表达式： -->
     <div class="item">
       <p>5. cron表达式：</p>
-      <div style="width:700px">
+      <div style="width:800px">
         <el-form :model="form" label-width="80px">
           <el-form-item label="Cron">
             <el-input v-model="form.cronExpression" auto-complete="off">
@@ -92,7 +92,7 @@
             </el-input>
           </el-form-item>
           <el-form-item style="margin-top: -10px; margin-bottom:0px;">
-            <tbl-cron v-if="showCronBox" v-model="form.cronExpression"></tbl-cron>
+            <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="cn"></tbl-cron>
             <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
           </el-form-item>
         </el-form>

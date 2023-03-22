@@ -8,25 +8,29 @@
     <!-- 周期 -->
     <div class="item-cell">
       <el-radio v-model="type" label="2" size="mini" border>{{ TEXT.cycle }}</el-radio>
-      <span class="span-left">{{ TEXT.from }}</span>
-      <el-input-number @change="type = '2'" v-model="cycle.start" :min="1" :max="59" size="mini" style="width: 100px;"></el-input-number>
-      <span class="span-left2">{{ TEXT.to }}</span>
-      <el-input-number @change="type = '2'" v-model="cycle.end" :min="2" :max="59" size="mini" style="width: 100px;"></el-input-number>
-      {{ itemLabel }}{{ TEXT.complex }}
+      <div>
+        <span class="span-left">{{ TEXT.from }}</span>
+        <el-input-number @change="type = '2'" v-model="cycle.start" :min="1" :max="59" size="mini" style="width: 100px;"></el-input-number>
+        <span class="span-left2">{{ TEXT.to }}</span>
+        <el-input-number @change="type = '2'" v-model="cycle.end" :min="2" :max="59" size="mini" style="width: 100px;"></el-input-number>
+        {{ itemLabel }}{{ TEXT.complex }}
+      </div>
     </div>
     <!-- 循环 -->
     <div class="item-cell">
       <el-radio v-model="type" label="3" size="mini" border>{{ TEXT.loop }}</el-radio>
-      <span class="span-left">{{ TEXT.start }}</span>
-      <el-input-number @change="type = '3'" v-model="loop.start" :min="0" :max="59" size="mini" style="width: 100px;"></el-input-number>
-      <span class="span-left2">{{ itemLabel }}{{ TEXT.start2 }}{{ TEXT.execute }}</span>
-      <el-input-number @change="type = '3'" v-model="loop.end" :min="1" :max="59" size="mini" style="width: 100px;"></el-input-number>
-      {{ itemLabel }}{{ TEXT.complex }}{{ TEXT.execute2 }}
+      <div>
+        <span class="span-left">{{ TEXT.start }}</span>
+        <el-input-number @change="type = '3'" v-model="loop.start" :min="0" :max="59" size="mini" style="width: 100px;"></el-input-number>
+        <span class="span-left2">{{ itemLabel }}{{ TEXT.start2 }}{{ TEXT.execute }}</span>
+        <el-input-number @change="type = '3'" v-model="loop.end" :min="1" :max="59" size="mini" style="width: 100px;"></el-input-number>
+        {{ itemLabel }}{{ TEXT.complex }}{{ TEXT.execute2 }}
+      </div>
     </div>
     <!-- 指定 -->
     <div class="item-cell">
       <el-radio v-model="type" label="4" size="mini" border>{{ TEXT.specific }}</el-radio>
-      <el-checkbox-group v-model="appoint" style="margin-top: 10px">
+      <el-checkbox-group v-model="appoint">
         <div v-for="i in 6" :key="i" style="margin-left: 15px;">
           <el-checkbox @change="type = '4'" v-for="j in 10" :key="j" :label="i - 1 + '' + (j - 1)"></el-checkbox>
         </div>
