@@ -1,6 +1,6 @@
 {
   "name": "tbl-custom-components",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": false,
   "license": "MIT",
   "main": "lib/tbl-custom-components.umd.min.js",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "deepmerge": "^4.3.0",
-    "element-ui": "^2.15.12",
+    "element-ui": "^2.15.13",
     "vue": "^2.6.14"
   },
   "devDependencies": {
