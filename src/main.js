@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 13:50:46
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-08 11:26:48
+ * @LastEditTime: 2023-03-22 16:08:25
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -14,7 +14,7 @@ import locale from './locale/lang/zh-CN'
 import locale2 from './locale/lang/en'
 
 import 'element-ui/lib/theme-chalk/index.css'; //element-ui样式表
-import '../lib/tbl-custom-components.css'; // 自定义组件样式表
+// import '../lib/tbl-custom-components.css'; // 自定义组件样式表
 
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
 Vue.use(TblCustomComponents); // 声明使用TblCustomComponents自定义组件

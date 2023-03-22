@@ -1,19 +1,19 @@
 <template lang="html">
   <div :val="value_">
     <!-- 每年 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="1" size="mini" border>{{ TEXT.every }}{{ itemLabel }}</el-radio>
     </div>
     <!-- 不指定 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="5" size="mini" border>{{ TEXT.unspecified }}</el-radio>
     </div>
     <!-- 周期 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="2" size="mini" border>{{ TEXT.cycle }}</el-radio>
-      <span style="margin-left: 10px; margin-right: 5px;">{{ TEXT.from }}</span>
+      <span class="span-left">{{ TEXT.from }}</span>
       <el-input-number @change="type = '2'" v-model="cycle.start" :min="2000" size="mini" style="width: 100px;"></el-input-number>
-      <span style="margin-left: 5px; margin-right: 5px;">{{ TEXT.to }}</span>
+      <span class="span-left2">{{ TEXT.to }}</span>
       <el-input-number @change="type = '2'" v-model="cycle.end" :min="2000" size="mini" style="width: 100px;"></el-input-number>
       <template v-if="lang == 'cn'">
         {{ itemLabel }}

@@ -1,15 +1,15 @@
 <template lang="html">
   <div :val="value_">
     <!-- 每周 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="1" size="mini" border>{{ TEXT.every }}{{ itemLabel }}</el-radio>
     </div>
     <!-- 不指定 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="5" size="mini" border>{{ TEXT.unspecified }}</el-radio>
     </div>
     <!-- 周期 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="2" size="mini" border>{{ TEXT.cycle }}</el-radio>
       <span style="margin-left: 10px;">{{ TEXT.from }}{{ TEXT.weekText }}</span>
       <el-input-number @change="type = '2'" v-model="cycle.start" :min="1" :max="7" size="mini" style="width: 100px;"></el-input-number>
@@ -19,34 +19,34 @@
       <span>{{ TEXT.weekText2 }}</span>
     </div>
     <!-- 循环 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="3" size="mini" border>{{ TEXT.loop }}</el-radio>
-      <span style="margin-left: 10px; margin-right: 5px;">{{ TEXT.start }}{{ TEXT.weekText }}</span>
+      <span class="span-left">{{ TEXT.start }}{{ TEXT.weekText }}</span>
       <el-input-number @change="type = '3'" v-model="loop.start" :min="1" :max="7" size="mini" style="width: 100px;"></el-input-number>
-      <span style="margin-left: 5px; margin-right: 5px;">{{ TEXT.weekText2 }}{{ TEXT.start2 }} {{ TEXT.execute }}</span>
+      <span class="span-left2">{{ TEXT.weekText2 }}{{ TEXT.start2 }} {{ TEXT.execute }}</span>
       <el-input-number @change="type = '3'" v-model="loop.end" :min="1" :max="7" size="mini" style="width: 100px;"></el-input-number>
       {{ TEXT.execute2 }}{{ TEXT.complex }}
     </div>
     <!-- 指定周 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="7" size="mini" border>{{ TEXT.specificWeek }}</el-radio>
-      <span style="margin-left: 10px; margin-right: 5px;">{{ TEXT.specificWeekText }}</span>
+      <span class="span-left">{{ TEXT.specificWeekText }}</span>
       <el-input-number @change="type = '7'" v-model="week.start" :min="1" :max="4" size="mini" style="width: 100px;"></el-input-number>
-      <span style="margin-left: 5px; margin-right: 5px;">{{ TEXT.specificWeekText2 }}{{ TEXT.specificWeekText3 }}</span>
+      <span class="span-left2">{{ TEXT.specificWeekText2 }}{{ TEXT.specificWeekText3 }}</span>
       <el-input-number @change="type = '7'" v-model="week.end" :min="1" :max="7" size="mini" style="width: 100px;"></el-input-number>
       {{ TEXT.specificWeekText4 }}
     </div>
     <!-- 本月最后一个 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="6" size="mini" border>{{ TEXT.lastWeek }}</el-radio>
-      <span style="margin-left: 10px; margin-right: 5px;">{{ TEXT.lastWeekText }}</span>
+      <span class="span-left">{{ TEXT.lastWeekText }}</span>
       <el-input-number @change="type = '6'" v-model="last" :min="1" :max="7" size="mini" style="width: 100px;"></el-input-number>
       {{ TEXT.lastWeekText2 }}
     </div>
     <!-- 指定星期 -->
-    <div>
+    <div class="item-cell">
       <el-radio v-model="type" label="4" size="mini" border>{{ TEXT.specific }}</el-radio>
-      <el-checkbox-group v-model="appoint">
+      <el-checkbox-group v-model="appoint" style="margin-top: 10px;margin-left: 10px;">
         <el-checkbox @change="type = '4'" v-for="i in 7" :key="i" :label="i"></el-checkbox>
       </el-checkbox-group>
     </div>

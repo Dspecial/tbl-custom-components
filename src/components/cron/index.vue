@@ -25,7 +25,7 @@
       </el-tab-pane>
     </el-tabs>
     <!-- table -->
-    <el-table :data="tableData" size="mini" border style="width: 100%;margin-top:5px">
+    <el-table :data="tableData" size="mini" border style="width: 100%;margin-top:10px">
       <el-table-column prop="sVal" :label="ITEMS.second"></el-table-column>
       <el-table-column prop="mVal" :label="ITEMS.minute"></el-table-column>
       <el-table-column prop="hVal" :label="ITEMS.hour"></el-table-column>
@@ -173,21 +173,32 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="scss">
 .cron {
   text-align: left;
   padding: 10px;
-  background: #fff;
-  border: 1px solid #dcdfe6;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
-}
-.cron .el-checkbox {
-  margin-right: 0px;
-}
-.cron .el-checkbox + .el-checkbox {
-  margin-left: 10px;
-}
-.cron .el-radio {
-  margin-right: 0px;
+  border: 1px solid #DCDFE6;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+  .el-checkbox {
+    margin-right: 5px;
+  }
+  .el-checkbox + .el-checkbox {
+    margin-left: 10px;
+  }
+  .el-radio {
+    margin-right: 5px;
+  }
+  .el-tab-pane .item-cell{
+    margin-bottom: 10px;
+    .span-left{
+      margin: 0 8px 0 15px;
+    }
+    .span-left2{
+      margin: 0 8px 0 8px;
+    }
+  }
+  .el-tab-pane .item-cell:last-child{
+    margin-bottom: 0;
+  }
 }
 </style>
