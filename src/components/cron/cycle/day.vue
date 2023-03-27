@@ -53,8 +53,10 @@
             v-for="j in 10"
             v-if="parseInt(i - 1 + '' + (j - 1)) < 32 && !(i === 1 && j === 1)"
             :key="j"
-            :label="i - 1 + '' + (j - 1)"
-          ></el-checkbox>
+            :label="(i - 1 > 0 ? i - 1 : '') + '' + (j - 1)"
+          >
+            {{ i - 1 + '' + (j - 1) }}
+          </el-checkbox>
         </div>
       </el-checkbox-group>
     </div>

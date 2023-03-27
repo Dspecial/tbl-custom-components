@@ -88,8 +88,7 @@
           <el-button slot="append" v-if="!showCronBox" icon="el-icon-arrow-down" @click="showCronBox = true" title="打开表达式配置"></el-button>
           <el-button slot="append" v-else icon="el-icon-arrow-up" @click="showCronBox = false" title="关闭表达式配置"></el-button>
         </el-input>
-        <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="en"></tbl-cron>
-        <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
+        <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="cn"></tbl-cron>
       </div>
     </div>
   </div>

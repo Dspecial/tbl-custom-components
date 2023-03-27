@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-21 20:05:35
+ * @LastEditTime: 2023-03-27 18:59:34
  */
 export default {
   custom: {
@@ -35,6 +35,7 @@ export default {
     cron: {
       errorText1:'”天“与：星期”不可以同时为“不指定”',
       errorText2:'”天“与”星期“必须有一个为“不指定”',
+      tips:'corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份',
       cycles: {
         second: '秒',
         minute: '分',
@@ -87,7 +88,7 @@ export default {
         specificWeekText4: '',
         lastWeek:'本月最后一个',
         lastWeekText:'星期',
-        lastWeekText2:'1',
+        lastWeekText2:'',
       },
       yearCycle: {
         unit: '年'

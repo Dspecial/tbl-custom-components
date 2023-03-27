@@ -34,6 +34,7 @@
       <el-table-column prop="weekVal" :label="ITEMS.week"></el-table-column>
       <el-table-column prop="yearVal" :label="ITEMS.year" width="150"></el-table-column>
     </el-table>
+    <div style="color: #E6A23C; font-size: 12px;margin-top:10px">Tips: {{TIPS}}</div>
   </div>
 </template>
 
@@ -72,6 +73,7 @@ export default {
     return {
       ITEMS: {},
       UNITS:{},
+      TIPS:'',
       
       activeName: 's',
       sVal: '',
@@ -153,6 +155,8 @@ export default {
       month: t('custom.cron.monthCycle.unit'),
       year: t('custom.cron.yearCycle.unit')
     };
+
+    this.TIPS = t('custom.cron.tips');
 
   },
   methods: {
