@@ -127,7 +127,11 @@ export default {
     };
   },
   methods: {
+    // 更新
     updateVal() {
+      // 先清空
+      this.clearVal();
+      // 重新赋值
       if (!this.value) {
         return;
       }
@@ -170,6 +174,29 @@ export default {
         this.type = '4';
         this.appoint = this.value.split(',');
       }
+    },
+
+    // 清空选择
+    clearVal() {
+      let year = new Date().getFullYear();
+      this.cycle = {
+        // 周期
+        start: year,
+        end: year,
+      };
+      this.loop = {
+        // 循环
+        start: 0,
+        end: 0,
+      };
+      this.week = {
+        // 指定周
+        start: 0,
+        end: 0,
+      };
+      this.work = 0;
+      this.last = 0;
+      this.appoint = []; // 指定
     },
   },
 };

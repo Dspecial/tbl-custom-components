@@ -34,7 +34,7 @@
     <div class="item-cell">
       <el-radio v-model="type" label="4" size="mini" border>{{ TEXT.specific }}</el-radio>
       <el-checkbox-group v-model="appoint">
-        <div v-for="i in 4" :key="i" class="checkbox-cell">
+        <div v-for="i in 2" :key="i" class="checkbox-cell">
           <el-checkbox
             @change="type = '4'"
             v-for="j in 10"
@@ -152,7 +152,11 @@ export default {
     };
   },
   methods: {
+    // 更新
     updateVal() {
+      // 先清空
+      this.clearVal();
+      // 重新赋值
       if (!this.value) {
         return;
       }
@@ -195,6 +199,28 @@ export default {
         this.type = '4';
         this.appoint = this.value.split(',');
       }
+    },
+
+    // 清空选择
+    clearVal() {
+      this.cycle = {
+        // 周期
+        start: 0,
+        end: 0,
+      };
+      this.loop = {
+        // 循环
+        start: 0,
+        end: 0,
+      };
+      this.week = {
+        // 指定周
+        start: 0,
+        end: 0,
+      };
+      this.work = 0;
+      this.last = 0;
+      this.appoint = []; // 指定
     },
   },
 };

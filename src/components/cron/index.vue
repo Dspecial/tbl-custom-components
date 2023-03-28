@@ -160,6 +160,7 @@ export default {
 
   },
   methods: {
+    // 更新
     updateVal() {
       if (!this.value) {
         return;
@@ -208,6 +209,9 @@ export default {
   .checkbox-cell{
     margin-left: 15px;
     margin-bottom: 10px;
+  }
+  .checkbox-cell:last-child{
+    margin-bottom: 0;
   }
 }
 </style>
