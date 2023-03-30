@@ -180,7 +180,6 @@ export default {
 
     // 清空选择
     clearVal(){
-      this.activeName = 's';
       this.sVal = '';
       this.mVal = '';
       this.hVal = '';
