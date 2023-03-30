@@ -20,9 +20,9 @@
       <el-tab-pane :label="ITEMS.week" name="week">
         <week v-model="weekVal" :itemLabel="UNITS.week" :lang="lang"></week>
       </el-tab-pane>
-      <el-tab-pane :label="ITEMS.year" name="year">
+      <!-- <el-tab-pane :label="ITEMS.year" name="year">
         <year v-model="yearVal" :itemLabel="UNITS.year" :lang="lang"></year>
-      </el-tab-pane>
+      </el-tab-pane> -->
     </el-tabs>
     <!-- table -->
     <el-table :data="tableData" size="mini" border style="width: 100%;margin-top:10px">
@@ -32,7 +32,7 @@
       <el-table-column prop="dVal" :label="ITEMS.day"></el-table-column></el-table-column>
       <el-table-column prop="monthVal" :label="ITEMS.month"></el-table-column>
       <el-table-column prop="weekVal" :label="ITEMS.week"></el-table-column>
-      <el-table-column prop="yearVal" :label="ITEMS.year" width="150"></el-table-column>
+      <!-- <el-table-column prop="yearVal" :label="ITEMS.year" width="150"></el-table-column> -->
     </el-table>
     <div style="color: #E6A23C; font-size: 12px;margin-top:10px">Tips: {{TIPS}}</div>
   </div>
@@ -162,6 +162,9 @@ export default {
   methods: {
     // 更新
     updateVal() {
+      // 先清空
+      this.clearVal();
+      // 重新赋值
       if (!this.value) {
         return;
       }
@@ -172,7 +175,19 @@ export default {
       this.dVal = arrays[3];
       this.monthVal = arrays[4];
       this.weekVal = arrays[5];
-      this.yearVal = arrays[6];
+      this.yearVal = arrays[6]? arrays[6]:'*';
+    },
+
+    // 清空选择
+    clearVal(){
+      this.activeName = 's';
+      this.sVal = '';
+      this.mVal = '';
+      this.hVal = '';
+      this.dVal = '';
+      this.monthVal = '';
+      this.weekVal = '';
+      this.yearVal = '';
     },
   },
 };
