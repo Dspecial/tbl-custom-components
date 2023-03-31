@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-27 19:01:16
+ * @LastEditTime: 2023-03-30 20:28:30
  */
 export default {
   custom: {
@@ -35,7 +35,7 @@ export default {
     cron: {
       errorText1:'"Days" and "Weeks" cannot be both "unspecified"',
       errorText2:'"Days" and "Weeks" must have one as "unspecified"',
-      tips:'Left to right (separated by spaces): seconds, minutes, hours, dates of months, months, dates of weeks, years',
+      tips:'Left to right (separated by spaces): seconds, minutes, hours, dates of months, months, dates of weeks',
       cycles: {
         second: 'Seconds',
         minute: 'Minutes',

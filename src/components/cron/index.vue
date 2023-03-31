@@ -75,7 +75,7 @@ export default {
       UNITS:{},
       TIPS:'',
       
-      activeName: 's',
+      activeName: 's', // s|m|h|d|month|week
       sVal: '',
       mVal: '',
       hVal: '',
@@ -100,7 +100,7 @@ export default {
           dVal: this.dVal,
           monthVal: this.monthVal,
           weekVal: this.weekVal,
-          yearVal: this.yearVal,
+          // yearVal: this.yearVal,
         },
       ];
     },
@@ -121,7 +121,7 @@ export default {
         this.$message.error(t('custom.cron.errorText2'));
         return
       }
-      let v = `${this.sVal} ${this.mVal} ${this.hVal} ${this.dVal} ${this.monthVal} ${this.weekVal} ${this.yearVal}`;
+      let v = `${this.sVal} ${this.mVal} ${this.hVal} ${this.dVal} ${this.monthVal} ${this.weekVal}`;
       if (v !== this.value) {
         this.$emit('input', v);
       }
@@ -130,6 +130,7 @@ export default {
   },
   created() {
     this.updateVal();
+    console.log(this.activeName,'kkkk');
   },
   mounted(){
     if (this.lang == 'en') {
@@ -157,7 +158,6 @@ export default {
     };
 
     this.TIPS = t('custom.cron.tips');
-
   },
   methods: {
     // 更新
@@ -165,17 +165,20 @@ export default {
       // 先清空
       this.clearVal();
       // 重新赋值
+      let _value = '';
       if (!this.value) {
-        return;
+        _value = '* * * * * ?';
+      }else{
+        _value = this.value;
       }
-      let arrays = this.value.split(' ');
+      let arrays = _value.split(' ');
       this.sVal = arrays[0];
       this.mVal = arrays[1];
       this.hVal = arrays[2];
       this.dVal = arrays[3];
       this.monthVal = arrays[4];
       this.weekVal = arrays[5];
-      this.yearVal = arrays[6]? arrays[6]:'*';
+      // this.yearVal = arrays[6];
     },
 
     // 清空选择
@@ -186,7 +189,7 @@ export default {
       this.dVal = '';
       this.monthVal = '';
       this.weekVal = '';
-      this.yearVal = '';
+      // this.yearVal = '';
     },
   },
 };

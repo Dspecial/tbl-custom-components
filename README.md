@@ -390,12 +390,20 @@ export default {
 
 ```
 <div style="width:800px">
-  <el-input v-model="form.cronExpression" auto-complete="off">
-    <el-button slot="append" v-if="!showCronBox" icon="el-icon-arrow-down" @click="showCronBox = true" title="打开表达式配置"></el-button>
-    <el-button slot="append" v-else icon="el-icon-arrow-up" @click="showCronBox = false" title="关闭表达式配置"></el-button>
+  <el-input v-model="form.cronExpression" placeholder="请输入运行周期" clearable>
+    <el-tooltip slot="append" effect="dark" content="打开表达式配置" placement="top">
+      <el-button icon="el-icon-thumb" @click="openCronDialog(form.cronExpression)"></el-button>
+    </el-tooltip>
   </el-input>
-  <tbl-cron v-if="showCronBox" v-model="form.cronExpression" lang="en"></tbl-cron>
-  <span style="color: #E6A23C; font-size: 12px;">corn从左到右（用空格隔开）：秒 分 小时 月份中的日期 月份 星期中的日期 年份</span>
+
+  <!-- cron表达式 -->
+  <el-dialog title="cron表达式" :visible.sync="showCronBox" width="40%" :append-to-body="true" :before-close="closeCron" destroy-on-close>
+    <tbl-cron v-model="cronVal" lang="cn"></tbl-cron>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="closeCron">取 消</el-button>
+      <el-button type="primary" @click="cronConfirm(cronVal)">确 定</el-button>
+    </span>
+  </el-dialog>
 </div>
 
 export default {
@@ -406,6 +414,7 @@ export default {
       form: {
         cronExpression: '',
       },
+      cronVal: '',
     }
   },
 }

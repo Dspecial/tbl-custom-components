@@ -85,7 +85,7 @@ export default {
     return {
       // 页面中文字
       TEXT: {},
-      type: '5', // 类型
+      type: '1', // 类型
       cycle: {
         // 周期
         start: 0,
