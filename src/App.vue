@@ -3,6 +3,17 @@
     <h3>示例如下</h3>
     <!-- 时间范围选择： -->
     <div class="item">
+      <p>6. el-table+分页+表头筛选显隐的表格</p>
+      <tbl-pro-table title="列表" :request="getList" :columns="columns" :pagination="paginationConfig" :loading="true">
+        <template #operate="scope">
+          <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
+          <el-button size="mini" type="danger">删除</el-button>
+        </template>
+      </tbl-pro-table>
+    </div>
+
+    <!-- 时间范围选择： -->
+    <div class="item">
       <p>1. 时间范围选择：</p>
       <tbl-daterange-picker
         lang="en"
@@ -188,6 +199,41 @@ export default {
         cronExpression: '',
       },
       cronVal: '',
+
+      // 表格
+      columns: [
+        { label: '序号', type: 'index' },
+        { label: '名称', prop: 'nickName', width: 180 },
+        { label: '邮箱', prop: 'userEmail' },
+        {
+          label: '操作',
+          fixed: 'right',
+          width: 180,
+          align: 'center',
+          tdSlot: 'operate', // 自定义单元格内容的插槽名称
+        },
+      ],
+      proTableData: {
+        list: [
+          {
+            index: 1,
+            nickName: '刘亦菲',
+            userEmail: '123@163.com',
+          },
+          {
+            index: 1,
+            nickName: '胡歌',
+            userEmail: '456@163.com',
+          },
+        ],
+        total: 2,
+      },
+      // 分页配置
+      paginationConfig: {
+        layout: 'total, prev, pager, next, sizes', // 分页组件显示哪些功能
+        pageSize: 5, // 每页条数
+        pageSizes: [5, 10, 20, 50],
+      },
     };
   },
   components: {},
@@ -276,6 +322,17 @@ export default {
     closeCron() {
       this.showCronBox = false;
       this.cronVal = '* * * * * ?';
+    },
+
+    // 请求函数
+    async getList(params) {
+      // params是从组件接收的，包含分页和搜索字段。
+      const _proTableData = this.proTableData;
+      // 必须要返回一个对象，包含data数组和total总数
+      return {
+        data: _proTableData.list,
+        total: _proTableData.total,
+      };
     },
   },
 };

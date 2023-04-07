@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-13 16:11:52
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-20 18:08:26
+ * @LastEditTime: 2023-04-06 14:49:23
  */
 // 定义 install 方法，接受 Vue 作为参数，如果使用 use 注册插件，则所有的组件都将被注册
 // 导入组件：按需导入时导入文件夹下的index.js文件， 全局导入时导入 .vue文件或者index.js文件都可以
@@ -11,6 +11,7 @@ import TblTooltipOver from './tooltip-over/index.js';
 import TblIconPicker from './icon-picker/index.js';
 import TblTableTransfer from './table-transfer/index.js';
 import TblCron from './cron/index.js';
+import TblProTable from './pro-table/index.js';
 import locale from '../locale/index.js';
 
 // 导入版本号
@@ -22,7 +23,8 @@ const components = [
   TblTooltipOver, 
   TblIconPicker,
   TblTableTransfer,
-  TblCron
+  TblCron,
+  TblProTable
 ];
 
 const install = function (Vue, options={}) {
@@ -49,7 +51,8 @@ export {
   TblTooltipOver,
   TblIconPicker,
   TblTableTransfer,
-  TblCron
+  TblCron,
+  TblProTable
 };
 
 export default { 
