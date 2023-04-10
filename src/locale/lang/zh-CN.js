@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-30 20:28:08
+ * @LastEditTime: 2023-04-10 15:33:37
  */
 export default {
   custom: {
@@ -94,5 +94,8 @@ export default {
         unit: '年'
       },
     },
+    dynamicsTable:{
+      colSettingTitle: '表头设置',
+    }
   }
 };

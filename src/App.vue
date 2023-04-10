@@ -3,17 +3,6 @@
     <h3>示例如下</h3>
     <!-- 时间范围选择： -->
     <div class="item">
-      <p>6. el-table+分页+表头筛选显隐的表格</p>
-      <tbl-pro-table title="列表" :request="getList" :columns="columns" :pagination="paginationConfig" :loading="true">
-        <template #operate="scope">
-          <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
-          <el-button size="mini" type="danger">删除</el-button>
-        </template>
-      </tbl-pro-table>
-    </div>
-
-    <!-- 时间范围选择： -->
-    <div class="item">
       <p>1. 时间范围选择：</p>
       <tbl-daterange-picker
         lang="en"
@@ -31,7 +20,7 @@
     <!-- 超出范围显示...并提示tips： -->
     <div class="item">
       <p>2. 超出范围显示...并提示tips：</p>
-      <div style="width:500px">
+      <div style="width:500px;margin-left: 15px">
         <p>2.1 无slot：</p>
         <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
         <p>2.1 有slot：</p>
@@ -91,17 +80,18 @@
       </div>
     </div>
 
-    <!-- cron表达式： -->
+    <!-- cron表达式选择器： -->
     <div class="item">
-      <p>5. cron表达式：</p>
+      <p>5. cron表达式选择器：</p>
       <div style="width:800px">
+        <!-- cron表达式输入框-->
         <el-input v-model="form.cronExpression" placeholder="请输入运行周期" clearable>
           <el-tooltip slot="append" effect="dark" content="打开表达式配置" placement="top">
             <el-button icon="el-icon-thumb" @click="openCronDialog(form.cronExpression)"></el-button>
           </el-tooltip>
         </el-input>
 
-        <!-- cron表达式 -->
+        <!-- cron表达式选择器 -->
         <el-dialog title="cron表达式" :visible.sync="showCronBox" width="40%" :append-to-body="true" :before-close="closeCron" destroy-on-close>
           <tbl-cron v-model="cronVal" lang="cn"></tbl-cron>
           <span slot="footer" class="dialog-footer">
@@ -109,6 +99,26 @@
             <el-button type="primary" @click="cronConfirm(cronVal)">确 定</el-button>
           </span>
         </el-dialog>
+      </div>
+    </div>
+
+    <!-- 动态表格 -->
+    <div class="item">
+      <p>6. el-table+分页+表头动态显隐的表格：</p>
+      <div style="width:800px">
+        <tbl-dynamic-tables
+          :request="getList"
+          :columns="columns"
+          :pagination="paginationConfig"
+          :dynamicColumns="true"
+          lang="cn"
+          @columns-change="columnsChange"
+        >
+          <template #operate="scope">
+            <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
+            <el-button size="mini" type="danger">删除</el-button>
+          </template>
+        </tbl-dynamic-tables>
       </div>
     </div>
   </div>
@@ -202,9 +212,13 @@ export default {
 
       // 表格
       columns: [
-        { label: '序号', type: 'index' },
-        { label: '名称', prop: 'nickName', width: 180 },
-        { label: '邮箱', prop: 'userEmail' },
+        { label: '', type: 'selection', show: true },
+        { label: '序号', type: 'index', show: false },
+        { label: '名称', prop: 'nickName', show: true, required: true },
+        { label: '邮箱2', prop: 'userEmail2', show: true },
+        { label: '邮箱3', prop: 'userEmail3', show: true },
+        { label: '邮箱4', prop: 'userEmail4', show: true },
+        { label: '邮箱5', prop: 'userEmail5', show: true },
         {
           label: '操作',
           fixed: 'right',
@@ -213,7 +227,7 @@ export default {
           tdSlot: 'operate', // 自定义单元格内容的插槽名称
         },
       ],
-      proTableData: {
+      dynamicTableData: {
         list: [
           {
             index: 1,
@@ -326,13 +340,19 @@ export default {
 
     // 请求函数
     async getList(params) {
-      // params是从组件接收的，包含分页和搜索字段。
-      const _proTableData = this.proTableData;
+      console.log(params, 'params');
+      // params是从组件接收的，包含分页字段。
+      const _dynamicTableData = this.dynamicTableData;
       // 必须要返回一个对象，包含data数组和total总数
       return {
-        data: _proTableData.list,
-        total: _proTableData.total,
+        data: _dynamicTableData.list,
+        total: _dynamicTableData.total,
       };
+    },
+
+    // 表头改变
+    columnsChange(columns1, columns2) {
+      console.log(columns1, columns2);
     },
   },
 };

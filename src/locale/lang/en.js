@@ -2,7 +2,7 @@
  * @Author: dxx
  * @Date: 2022-12-02 15:10:07
  * @LastEditors: dxx
- * @LastEditTime: 2023-03-30 20:28:30
+ * @LastEditTime: 2023-04-10 15:38:46
  */
 export default {
   custom: {
@@ -94,5 +94,8 @@ export default {
         unit: 'year',
       },
     },
+    dynamicsTable:{
+      colSettingTitle: 'Thead Setting',
+    }
   },
 }

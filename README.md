@@ -134,7 +134,7 @@ export default {
 - ##### 使用示例
 
 ```
-<div style="width:500px">
+<div style="width:500px;margin-left: 15px">
   <p>2.1 无slot：</p>
   <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
   <p>2.1 有slot：</p>
@@ -380,31 +380,30 @@ export default {
 
 2. lang （国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
-> #### tbl-cron cron 表达式
+> #### tbl-cron cron 表达式选择器
 
 - ##### 介绍
 
-基于[vue-cron](https://gitee.com/lindeyi/vue-cron?_from=gitee_search) 组件进行二次开发。
+参考[vue-cron](https://gitee.com/lindeyi/vue-cron?_from=gitee_search) 组件进行重新开发和改造。
 
 - ##### 使用示例
 
 ```
-<div style="width:800px">
-  <el-input v-model="form.cronExpression" placeholder="请输入运行周期" clearable>
-    <el-tooltip slot="append" effect="dark" content="打开表达式配置" placement="top">
-      <el-button icon="el-icon-thumb" @click="openCronDialog(form.cronExpression)"></el-button>
-    </el-tooltip>
-  </el-input>
+<!-- cron表达式输入框 -->
+<el-input v-model="form.cronExpression" placeholder="请输入运行周期" clearable>
+<el-tooltip slot="append" effect="dark" content="打开表达式配置" placement="top">
+  <el-button icon="el-icon-thumb" @click="openCronDialog(form.cronExpression)"></el-button>
+</el-tooltip>
+</el-input>
 
-  <!-- cron表达式 -->
-  <el-dialog title="cron表达式" :visible.sync="showCronBox" width="40%" :append-to-body="true" :before-close="closeCron" destroy-on-close>
-    <tbl-cron v-model="cronVal" lang="cn"></tbl-cron>
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="closeCron">取 消</el-button>
-      <el-button type="primary" @click="cronConfirm(cronVal)">确 定</el-button>
-    </span>
-  </el-dialog>
-</div>
+<!-- cron表达式选择器 -->
+<el-dialog title="cron表达式" :visible.sync="showCronBox" width="40%" :append-to-body="true" :before-close="closeCron" destroy-on-close>
+<tbl-cron v-model="cronVal" lang="cn"></tbl-cron>
+<span slot="footer" class="dialog-footer">
+  <el-button @click="closeCron">取 消</el-button>
+  <el-button type="primary" @click="cronConfirm(cronVal)">确 定</el-button>
+</span>
+</el-dialog>
 
 export default {
   name: 'App',
@@ -423,3 +422,164 @@ export default {
 - ##### 问题解决、配置项、属性等
 
 1. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+> #### tbl-dynamic-tables 动态表格
+
+- ##### 介绍
+
+基于[el-table](https://element.eleme.cn/#/zh-CN/component/table)+[el-pagination](https://element.eleme.cn/#/zh-CN/component/pagination) 组件,实现表格+分页的封装，另外配置了动态表头，使表格能根据自定义选择的表头动态渲染。
+
+将列表、分页三者的交互逻辑封装到组件中，节省开发者代码量
+配置化的表格项，跟 el-table-column 的配置属性类似
+配置化的分页，跟 el-pagination 的配置属性类似
+自定义是否显示搜索和分页
+自定义工具栏
+丰富的插槽提供功能扩展
+
+- ##### 使用示例
+
+```
+<tbl-dynamic-tables
+  :request="getList"
+  :columns="columns"
+  :pagination="paginationConfig"
+  :dynamicColumns="true"
+  lang="cn"
+  @columns-change="columnsChange"
+>
+  <template #operate="scope">
+    <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
+    <el-button size="mini" type="danger">删除</el-button>
+  </template>
+</tbl-dynamic-tables>
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      // 表格
+      columns: [
+        { label: '序号', type: 'index', show: true },
+        { label: '名称', prop: 'nickName', show: true, required: true },
+        { label: '邮箱2', prop: 'userEmail2', show: true },
+        { label: '邮箱3', prop: 'userEmail3', show: true },
+        { label: '邮箱4', prop: 'userEmail4', show: true },
+        { label: '邮箱5', prop: 'userEmail5', show: true },
+        {
+          label: '操作',
+          show: true,
+          fixed: 'right',
+          width: 180,
+          align: 'center',
+          tdSlot: 'operate', // 自定义单元格内容的插槽名称
+        },
+      ],
+      dynamicTableData: {
+        list: [
+          {
+            index: 1,
+            nickName: '刘亦菲',
+            userEmail: '123@163.com',
+          },
+          {
+            index: 1,
+            nickName: '胡歌',
+            userEmail: '456@163.com',
+          },
+        ],
+        total: 2,
+      },
+      // 分页配置
+      paginationConfig: {
+        layout: 'total, prev, pager, next, sizes', // 分页组件显示哪些功能
+        pageSize: 5, // 每页条数
+        pageSizes: [5, 10, 20, 50],
+      },
+    }
+  },
+}
+
+// 请求函数
+async getList(params) {
+  console.log(params, 'params');
+  // params是从组件接收的，包含分页字段。
+  const _dynamicTableData = this.dynamicTableData;
+  // 必须要返回一个对象，包含data数组和total总数
+  return {
+    data: _dynamicTableData.list,
+    total: _dynamicTableData.total,
+  };
+},
+
+// 表头改变
+columnsChange(columns1, columns2) {
+  console.log(columns1, columns2);
+},
+
+```
+
+- ##### 问题解决、配置项、属性等
+
+1. request，请求列表数据的函数：组件加载的时候会自动执行 request 函数
+
+- 函数接收参数：包含搜索表单的所有字段和分页的 pageNum 和 pageSize
+- 函数必须返回一个对象，包含:
+- - data: 列表数据的数组（数组 Array）
+- - total：总数，用于分页（数值 Number）
+    例如：
+
+```
+dynamicTableData: {
+    list: [
+      {
+        index: 1,
+        nickName: '刘亦菲',
+        userEmail: '123@163.com',
+      },
+      {
+        index: 1,
+        nickName: '胡歌',
+        userEmail: '456@163.com',
+      },
+    ],
+    total: 2,
+}
+```
+
+2. table 表格配置：支持[el-table](https://element.eleme.cn/#/zh-CN/component/table#table-attributes)的所有属性
+3. columns 列配置（数组 Array）
+
+| 参数      | 说明                                                                                                      | 类型                    | 可选值                 | 默认值 |
+| --------- | --------------------------------------------------------------------------------------------------------- | ----------------------- | ---------------------- | ------ |
+| label     | 对应 el-table-column 的 label                                                                             | string                  | -                      | -      |
+| type      | 对应 el-table-column 的 type                                                                              | string                  | selection/index/expand | -      |
+| prop      | 对应 el-table-column 的 prop                                                                              | string                  | -                      | -      |
+| width     | 对应 el-table-column 的 width                                                                             | string,number           | -                      | -      |
+| minWidth  | 对应 el-table-column 的 min-width                                                                         | string,number           | -                      | -      |
+| align     | 对应 el-table-column 的 align                                                                             | string                  | left/center/right      | left   |
+| fixed     | 对应 el-table-column 的 fixed                                                                             | string,boolean          | true, left, right      | -      |
+| sortable  | 对应 el-table-column 的 sortable                                                                          | boolean                 | false/true             | false  |
+| filters   | 对应 el-table-column 的 filters                                                                           | Array\[{ text, value }] | -                      | -      |
+| ...       | ...                                                                                                       | ...                     | ...                    | ...    |
+| 以上 ↑↑↑  | 支持[el-table-column](https://element.eleme.cn/#/zh-CN/component/table#table-column-attributes)的所有属性 | ↑                       | ↑                      | ↑      |
+| 新增 ↓↓↓  | ↓                                                                                                         | ↓                       | ↓                      | ↓      |
+| tdSlot    | 单元格要自定义内容时，可以通过此属性配置一个插槽名称，并且是作用域插槽，可以接收 scope 数据               | string                  | -                      | -      |
+| labelSlot | 表头要自定义内容时，可以通过此属性配置一个插槽名称，并且是作用域插槽，可以接收 scope 数据                 | string                  | -                      | -      |
+| show      | 是否显示该列                                                                                              | boolean                 | false/true             | true   |
+| required  | 某列必填，不可隐藏                                                                                        | boolean                 | false/true             | -      |
+
+4. pagination 分页配置（对象 Object）,如果不想显示分页，将 pagination 设置为 false
+
+| 参数      | 说明                         | 类型          | 可选值                                  | 默认值                                  |
+| --------- | ---------------------------- | ------------- | --------------------------------------- | --------------------------------------- |
+| layout    | 组件布局                     | string        | total, sizes, prev, pager, next, jumper | total, sizes, prev, pager, next, jumper |
+| pageSize  | 每页显示条目个数             | number        | -                                       | 10                                      |
+| pageSizes | 每页显示个数选择器的选项设置 | Array[number] | -                                       | [10, 20, 30, 40, 50, 100]               |
+
+5. 工具栏配置，工具栏默认是空的，提供一个具名插槽 toolbar，来自定义工具栏的内容
+6. dynamicColumns(显示动态表头|布尔值)，默认为 true，目前支持 false|true
+7. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+8. 事件 columns-change，表头动态修改后的返回函数，函数返回两个值：
+
+- columns1：改变后的所有表头数据；
+- columns2：改变后的当前显示的表头数据
