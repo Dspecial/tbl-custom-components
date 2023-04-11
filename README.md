@@ -8,50 +8,40 @@
 
 #### 安装
 
-```javascript
-npm i tbl-custom-components;
-```
+    npm i tbl-custom-components;
 
 #### 注册
 
 `main.js`中注册，依赖于 element-ui，因此注册的时候得同步注册 element-ui
 
-```javascript
-import ElementUI from 'element-ui';
-Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
+    import ElementUI from 'element-ui';
+    Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
 
-import 'element-ui/lib/theme-chalk/index.css'; // element-ui样式表
-```
+    import 'element-ui/lib/theme-chalk/index.css'; // element-ui样式表
 
 ##### 全局注册
 
-```javascript
-import TblCustomComponents from 'tbl-custom-components'; // 引入自定义组件
-Vue.use(TblComponents); // 声明使用TblComponents自定义组件
+    import TblCustomComponents from 'tbl-custom-components';  // 引入自定义组件
+    Vue.use(TblComponents); // 声明使用TblComponents自定义组件
 
-import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
-```
+    import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
 
 ##### 按需引入
 
-```javascript
-import { TblDaterangePicker, TblTooltipOver } from 'tbl-custom-components'; // 按需引入自定义组件（也可以不加大括号引入）
-Vue.use(TblDaterangePicker); // 声明使用TblComponents自定义组件
-Vue.use(TblTooltipOver); // 声明使用TblComponents自定义组件
+    import { TblDaterangePicker,TblTooltipOver } from 'tbl-custom-components';  // 按需引入自定义组件（也可以不加大括号引入）
+    Vue.use(TblDaterangePicker); // 声明使用TblComponents自定义组件
+    Vue.use(TblTooltipOver); // 声明使用TblComponents自定义组件
 
-import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
-```
+    import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
 
 ##### 配置国际化
 
-```javascript
-// 全局配置
-import TblCustomComponents from 'tbl-custom-components'; // 引入自定义组件
-import locale from 'tbl-custom-components/lib/locale/lang/en'; // 全局配置自定义组件的国际化
-Vue.use(TblCustomComponents, { locale }); // 声明使用TblComponents自定义组件并配置国际化
+    // 全局配置
+    import TblCustomComponents from 'tbl-custom-components';  // 引入自定义组件
+    import locale from 'tbl-custom-components/lib/locale/lang/en'; // 全局配置自定义组件的国际化
+    Vue.use(TblCustomComponents,{ locale }); // 声明使用TblComponents自定义组件并配置国际化
 
-import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
-```
+    import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件样式表
 
 ### 组件使用说明
 
@@ -65,48 +55,46 @@ import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件
 
 ##### 使用示例
 
-```javascript
-<tbl-daterange-picker
-  lang="en"
-  v-model="defaultValue"
-  align="left"
-  format="yyyy-MM-dd HH:mm:ss"
-  value-format="yyyy-MM-dd HH:mm:ss"
-  :btnOption="btnOption"
-  :picker-options="pickerOptions"
-  @change="onChange"
-></tbl-daterange-picker>
+    <tbl-daterange-picker
+      lang="en"
+      v-model="defaultValue"
+      align="left"
+      format="yyyy-MM-dd HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      :btnOption="btnOption"
+      :picker-options="pickerOptions"
+      @change="onChange"
+    ></tbl-daterange-picker>
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      defaultValue: [this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss')],
-      btnOption: {
-        isYesterday: true, // 显示 昨日 按钮
-        isToday: true, // 今日
-        isPreWeek: true, // 上周
-        isThisWeek: true, // 本周
-        isPreMonth: true, // 上月
-        isThisMonth: true, // 本月
-        isLast7days: true, // 过去7天
+    export default {
+      name: 'App',
+      data() {
+        return {
+          defaultValue: [this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss')],
+          btnOption: {
+            isYesterday: true, // 显示 昨日 按钮
+            isToday: true, // 今日
+            isPreWeek: true, // 上周
+            isThisWeek: true, // 本周
+            isPreMonth: true, // 上月
+            isThisMonth: true, // 本月
+            isLast7days: true, // 过去7天
+          },
+          pickerOptions: {
+            shortcuts: [],
+            disabledDate(date) {
+              return date.getTime() > Date.now();
+            },
+          },
+        }
       },
-      pickerOptions: {
-        shortcuts: [],
-        disabledDate(date) {
-          return date.getTime() > Date.now();
+      methods:{
+        onChange(val) {
+          console.log(val, '获取到绑定的时间范围值');
+          this.defaultValue = val;
         },
       },
     }
-  },
-  methods:{
-    onChange(val) {
-      console.log(val, '获取到绑定的时间范围值');
-      this.defaultValue = val;
-    },
-  },
-}
-```
 
 ##### 问题解决、配置项、属性等
 
@@ -142,28 +130,26 @@ export default {
 
 ##### 使用示例
 
-```javascript
-<div style="width:500px;margin-left: 15px">
-  <p>2.1 无slot：</p>
-  <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
-  <p>2.1 有slot：</p>
-  <tbl-tooltip-over refName="tooltipOver" effect="dark" popper-class="test-tooltip">
-    <span slot="contentTip" style="color:#00f;">{{ content2 }}</span>
-    <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content1 }}</span>
-  </tbl-tooltip-over>
-</div>
+    <div style="width:500px;margin-left: 15px">
+      <p>2.1 无slot：</p>
+      <tbl-tooltip-over :content="content" refName="tooltipOver" effect="dark" placement="top-start" popper-class="test-tooltip"></tbl-tooltip-over>
+      <p>2.1 有slot：</p>
+      <tbl-tooltip-over refName="tooltipOver" effect="dark" popper-class="test-tooltip">
+        <span slot="contentTip" style="color:#00f;">{{ content2 }}</span>
+        <span slot="contentOver" style="color:#f00;font-size: 40px">{{ content1 }}</span>
+      </tbl-tooltip-over>
+    </div>
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
-      content1: `恶风读wùfēng。指病人遇风觉冷，避风则缓解之症。外感内伤俱可见恶风之证。指病邪，《素问·脉要精微论》：“来徐去疾，上虚下实`,
-      content2: 112233445566,
+    export default {
+      name: 'App',
+      data() {
+        return {
+          content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
+          content1: `恶风读wùfēng。指病人遇风觉冷，避风则缓解之症。外感内伤俱可见恶风之证。指病邪，《素问·脉要精微论》：“来徐去疾，上虚下实`,
+          content2: 112233445566,
+        }
+      },
     }
-  },
-}
-```
 
 ##### 问题解决、配置项、属性等
 
@@ -195,29 +181,25 @@ export default {
 
 ##### 使用示例
 
-```javascript
-<tbl-icon-picker v-model='iconValue' placeholder='请选择图标' type='wisdom'></tbl-icon-picker>;
+    <tbl-icon-picker v-model="iconValue" placeholder="请选择图标" type="wisdom"></tbl-icon-picker>
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      iconValue: '',
-    };
-  },
-};
-```
+    export default {
+      name: 'App',
+      data() {
+        return {
+          iconValue: '',
+        }
+      },
+    }
 
 ##### 问题解决、配置项、属性等
 
 1.  type 自定义图标类型，需要在工程项目中事先引入对应的图标库，方可使用
 
-    ```javascript
-    /* 引入自定义wisdom 图标（在线引用，项目中还是推荐下载下来使用） */
-    @import '//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css';
-    /* 引入自定义noah 图标（在线引用，项目中还是推荐下载下来使用） */
-    @import '//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css';
-    ```
+        /* 引入自定义wisdom 图标（在线引用，项目中还是推荐下载下来使用） */
+        @import '//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css';
+        /* 引入自定义noah 图标（在线引用，项目中还是推荐下载下来使用） */
+        @import '//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css';
 
     | 参数 | 说明           | 类型   | 可选值      | 默认值 |
     | :--- | :------------- | :----- | :---------- | :----- |
@@ -242,159 +224,157 @@ export default {
 
 ##### 使用示例
 
-```javascript
-<tbl-table-transfer
-  class="eltTransfer"
-  ref="eltTransfer"
-  :show-query="true"
-  :show-pagination="true"
-  :pagination-call-back="paginationCallBack"
-  :left-columns="leftColumns"
-  :title-texts="['全部设备', '已绑设备']"
-  :query-texts="['筛选', '筛选']"
-  :table-row-key="row => row.id"
-  maxHeight="900px"
-  minHeight="470px"
-  v-model="tableData"
->
-  <!-- 可以使用插槽获取到列信息和行信息，从而进行数据的处理 -->
-  <template v-slot:default="{ scope }">
-    <div>
-      <span v-if="scope.col.id === 'state'">
-        <span v-if="scope.row.state == 0">离线</span>
-        <span v-if="scope.row.state == 1">在线</span>
-      </span>
-      <span v-else>{{ scope.row[scope.col.id] }}</span>
-    </div>
-  </template>
-  <template v-slot:leftCondition="{ scope }">
-    <el-form-item label="">
-      <el-input v-model="scope.deviceName" clearable placeholder="请输入设备名称"></el-input>
-    </el-form-item>
-  </template>
-  <template v-slot:rightCondition="{ scope }">
-    <el-form-item label="">
-      <el-input v-model="scope.deviceName" clearable placeholder="请输入设备名称"></el-input>
-    </el-form-item>
-  </template>
-</tbl-table-transfer>
+    <tbl-table-transfer
+      class="eltTransfer"
+      ref="eltTransfer"
+      :show-query="true"
+      :show-pagination="true"
+      :pagination-call-back="paginationCallBack"
+      :left-columns="leftColumns"
+      :title-texts="['全部设备', '已绑设备']"
+      :query-texts="['筛选', '筛选']"
+      :table-row-key="row => row.id"
+      maxHeight="900px"
+      minHeight="470px"
+      v-model="tableData"
+    >
+      <!-- 可以使用插槽获取到列信息和行信息，从而进行数据的处理 -->
+      <template v-slot:default="{ scope }">
+        <div>
+          <span v-if="scope.col.id === 'state'">
+            <span v-if="scope.row.state == 0">离线</span>
+            <span v-if="scope.row.state == 1">在线</span>
+          </span>
+          <span v-else>{{ scope.row[scope.col.id] }}</span>
+        </div>
+      </template>
+      <template v-slot:leftCondition="{ scope }">
+        <el-form-item label="">
+          <el-input v-model="scope.deviceName" clearable placeholder="请输入设备名称"></el-input>
+        </el-form-item>
+      </template>
+      <template v-slot:rightCondition="{ scope }">
+        <el-form-item label="">
+          <el-input v-model="scope.deviceName" clearable placeholder="请输入设备名称"></el-input>
+        </el-form-item>
+      </template>
+    </tbl-table-transfer>
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      // 表头
-      leftColumns: [
-        { label: '设备名称', id: 'deviceName' },
-        { label: '设备编号', id: 'deviceCode' },
-        { label: '网络状态', id: 'state', width: '80px' },
-      ],
-      // 已绑定数据
-      tableData: [
-        {
-          id: 1,
-          deviceName: '设备1',
-          deviceCode: '0001',
-          state: 0,
-        },
-        {
-          id: 2,
-          deviceName: '设备2',
-          deviceCode: '0002',
-          state: 1,
-        },
-      ],
-      // 全部数据
-      allDeviceData: [
-        {
-          id: 1,
-          deviceName: '设备1',
-          deviceCode: '0001',
-          state: 0,
-        },
-        {
-          id: 2,
-          deviceName: '设备2',
-          deviceCode: '0002',
-          state: 1,
-        },
-        {
-          id: 3,
-          deviceName: '设备3',
-          deviceCode: '0003',
-          state: 0,
-        },
-        {
-          id: 4,
-          deviceName: '设备4',
-          deviceCode: '0004',
-          state: 1,
-        },
-      ],
-    }
-  },
-
-  methods:{
-    // 未选数据加载和检索
-    paginationCallBack(obj) {
-      let abcData;
-      var filtersObj = {
-        deviceName: obj.deviceName,
-      };
-
-      // 如果筛选条件全为空，查全部；否则按条件筛选
-      var objIsEmpty = true;
-      for (var key in filtersObj) {
-        if (typeof filtersObj[key] != 'undefined' && typeof filtersObj[key] != 'null' && filtersObj[key] != null && filtersObj[key] != '') {
-          objIsEmpty = false;
-          break;
+    export default {
+      name: 'App',
+      data() {
+        return {
+          // 表头
+          leftColumns: [
+            { label: '设备名称', id: 'deviceName' },
+            { label: '设备编号', id: 'deviceCode' },
+            { label: '网络状态', id: 'state', width: '80px' },
+          ],
+          // 已绑定数据
+          tableData: [
+            {
+              id: 1,
+              deviceName: '设备1',
+              deviceCode: '0001',
+              state: 0,
+            },
+            {
+              id: 2,
+              deviceName: '设备2',
+              deviceCode: '0002',
+              state: 1,
+            },
+          ],
+          // 全部数据
+          allDeviceData: [
+            {
+              id: 1,
+              deviceName: '设备1',
+              deviceCode: '0001',
+              state: 0,
+            },
+            {
+              id: 2,
+              deviceName: '设备2',
+              deviceCode: '0002',
+              state: 1,
+            },
+            {
+              id: 3,
+              deviceName: '设备3',
+              deviceCode: '0003',
+              state: 0,
+            },
+            {
+              id: 4,
+              deviceName: '设备4',
+              deviceCode: '0004',
+              state: 1,
+            },
+          ],
         }
-      }
+      },
 
-      if (objIsEmpty) {
-        abcData = this.allDeviceData;
-      } else {
-        // 拿到有值的参数
-        let tempFilter = {};
-        for (var key in filtersObj) {
-          if (typeof filtersObj[key] != 'undefined' && typeof filtersObj[key] != 'null' && filtersObj[key] != null && filtersObj[key] != '') {
-            tempFilter[key] = filtersObj[key];
-          }
-        }
-        abcData = this.allDeviceData.filter(item => {
-          let flag = false;
-          for (key in tempFilter) {
-            // console.log(key,'输出key')
-            if (item[key].toString().indexOf(tempFilter[key].toString()) >= 0) {
-              flag = true;
-            } else {
-              flag = false;
+      methods:{
+        // 未选数据加载和检索
+        paginationCallBack(obj) {
+          let abcData;
+          var filtersObj = {
+            deviceName: obj.deviceName,
+          };
+
+          // 如果筛选条件全为空，查全部；否则按条件筛选
+          var objIsEmpty = true;
+          for (var key in filtersObj) {
+            if (typeof filtersObj[key] != 'undefined' && typeof filtersObj[key] != 'null' && filtersObj[key] != null && filtersObj[key] != '') {
+              objIsEmpty = false;
               break;
             }
           }
-          if (flag) {
-            return item;
-          }
-        });
-      }
 
-      let newData = abcData.filter((item, index) => {
-        if (index >= (obj.pageIndex - 1) * obj.pageSize && index < obj.pageIndex * obj.pageSize) {
-          return true;
-        }
-        return false;
-      });
-      return new Promise((resolve, reject) => {
-        try {
-          resolve({ total: abcData.length, data: newData });
-        } catch (e) {
-          reject();
-        }
-      });
-    },
-  }
-}
-```
+          if (objIsEmpty) {
+            abcData = this.allDeviceData;
+          } else {
+            // 拿到有值的参数
+            let tempFilter = {};
+            for (var key in filtersObj) {
+              if (typeof filtersObj[key] != 'undefined' && typeof filtersObj[key] != 'null' && filtersObj[key] != null && filtersObj[key] != '') {
+                tempFilter[key] = filtersObj[key];
+              }
+            }
+            abcData = this.allDeviceData.filter(item => {
+              let flag = false;
+              for (key in tempFilter) {
+                // console.log(key,'输出key')
+                if (item[key].toString().indexOf(tempFilter[key].toString()) >= 0) {
+                  flag = true;
+                } else {
+                  flag = false;
+                  break;
+                }
+              }
+              if (flag) {
+                return item;
+              }
+            });
+          }
+
+          let newData = abcData.filter((item, index) => {
+            if (index >= (obj.pageIndex - 1) * obj.pageSize && index < obj.pageIndex * obj.pageSize) {
+              return true;
+            }
+            return false;
+          });
+          return new Promise((resolve, reject) => {
+            try {
+              resolve({ total: abcData.length, data: newData });
+            } catch (e) {
+              reject();
+            }
+          });
+        },
+      }
+    }
 
 ##### 问题解决、配置项、属性等
 
@@ -427,36 +407,34 @@ export default {
 
 ##### 使用示例
 
-```javascript
-<!-- cron表达式输入框 -->
-<el-input v-model="form.cronExpression" placeholder="请输入运行周期" clearable>
-<el-tooltip slot="append" effect="dark" content="打开表达式配置" placement="top">
-  <el-button icon="el-icon-thumb" @click="openCronDialog(form.cronExpression)"></el-button>
-</el-tooltip>
-</el-input>
+    <!-- cron表达式输入框 -->
+    <el-input v-model="form.cronExpression" placeholder="请输入运行周期" clearable>
+    <el-tooltip slot="append" effect="dark" content="打开表达式配置" placement="top">
+      <el-button icon="el-icon-thumb" @click="openCronDialog(form.cronExpression)"></el-button>
+    </el-tooltip>
+    </el-input>
 
-<!-- cron表达式选择器 -->
-<el-dialog title="cron表达式" :visible.sync="showCronBox" width="40%" :append-to-body="true" :before-close="closeCron" destroy-on-close>
-<tbl-cron v-model="cronVal" lang="cn"></tbl-cron>
-<span slot="footer" class="dialog-footer">
-  <el-button @click="closeCron">取 消</el-button>
-  <el-button type="primary" @click="cronConfirm(cronVal)">确 定</el-button>
-</span>
-</el-dialog>
+    <!-- cron表达式选择器 -->
+    <el-dialog title="cron表达式" :visible.sync="showCronBox" width="40%" :append-to-body="true" :before-close="closeCron" destroy-on-close>
+    <tbl-cron v-model="cronVal" lang="cn"></tbl-cron>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="closeCron">取 消</el-button>
+      <el-button type="primary" @click="cronConfirm(cronVal)">确 定</el-button>
+    </span>
+    </el-dialog>
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      showCronBox: false,
-      form: {
-        cronExpression: '',
+    export default {
+      name: 'App',
+      data() {
+        return {
+          showCronBox: false,
+          form: {
+            cronExpression: '',
+          },
+          cronVal: '',
+        }
       },
-      cronVal: '',
     }
-  },
-}
-```
 
 ##### 问题解决、配置项、属性等
 
@@ -480,150 +458,147 @@ export default {
 
 ##### 使用示例
 
-```javascript
-<tbl-dynamic-tables
-  :request="getList"
-  :columns="columns"
-  :pagination="paginationConfig"
-  :dynamicColumns="true"
-  lang="cn"
-  @columns-change="columnsChange"
->
-  <template #isEnable="scope">
-    <el-switch v-model="scope.row.isEnable" :active-value="1" :inactive-value="0"></el-switch>
-  </template>
-  <template #operate="scope">
-    <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
-    <el-button size="mini" type="danger">删除</el-button>
-  </template>
-</tbl-dynamic-tables>
+    <tbl-dynamic-tables
+      :request="getList"
+      :columns="columns"
+      :pagination="paginationConfig"
+      :dynamicColumns="true"
+      lang="cn"
+      @columns-change="columnsChange"
+    >
+      <template #isEnable="scope">
+        <el-switch v-model="scope.row.isEnable" :active-value="1" :inactive-value="0"></el-switch>
+      </template>
+      <template #operate="scope">
+        <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
+        <el-button size="mini" type="danger">删除</el-button>
+      </template>
+    </tbl-dynamic-tables>
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      // 表格
-      columns: [
-        { label: '', type: 'selection', show: true },
-        { label: '序号', type: 'index', show: false },
-        { label: '角色名称', prop: 'nickName', show: true, required: true },
-        { label: '邮箱', prop: 'userEmail', show: true },
-        { label: '电话', prop: 'tel', show: true },
-        {
-          label: '性别',
-          prop: 'sex',
-          show: true,
-          formatter: function(row, column, cellValue, index) {
-            if (cellValue == '男') {
-              return (
-                <span>
-                  <i style='background-color:#f00;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
-                  {cellValue}
-                </span>
-              ); // 此处注意jsx的语法规则
-            } else {
-              return (
-                <span>
-                  <i style='backgroundColor:#0f0;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
-                  {cellValue}
-                </span>
-              ); // 此处注意jsx的语法规则
-            }
+    export default {
+      name: 'App',
+      data() {
+        return {
+          // 表格
+          columns: [
+            { label: '', type: 'selection', show: true },
+            { label: '序号', type: 'index', show: false },
+            { label: '角色名称', prop: 'nickName', show: true, required: true },
+            { label: '邮箱', prop: 'userEmail', show: true },
+            { label: '电话', prop: 'tel', show: true },
+            {
+              label: '性别',
+              prop: 'sex',
+              show: true,
+              formatter: function(row, column, cellValue, index) {
+                if (cellValue == '男') {
+                  return (
+                    <span>
+                      <i style='background-color:#f00;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
+                      {cellValue}
+                    </span>
+                  ); // 此处注意jsx的语法规则
+                } else {
+                  return (
+                    <span>
+                      <i style='backgroundColor:#0f0;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
+                      {cellValue}
+                    </span>
+                  ); // 此处注意jsx的语法规则
+                }
+              },
+            },
+            {
+              label: '启用',
+              prop: 'isEnable',
+              show: true,
+              tdSlot: 'isEnable', // 自定义单元格内容的插槽名称
+            },
+            {
+              label: '操作',
+              fixed: 'right',
+              width: 180,
+              align: 'center',
+              tdSlot: 'operate', // 自定义单元格内容的插槽名称
+            },
+          ],
+          dynamicTableData: {
+            list: [
+              {
+                nickName: '李逍遥',
+                userEmail: '123@163.com',
+                tel: '15189764540',
+                sex: '男',
+                isEnable: 1,
+              },
+              {
+                nickName: '赵灵儿',
+                userEmail: '456@163.com',
+                tel: '15189764541',
+                sex: '女',
+                isEnable: 1,
+              },
+              {
+                nickName: '林月如',
+                userEmail: '789@163.com',
+                tel: '15189764542',
+                sex: '女',
+                isEnable: 0,
+              },
+            ],
+            total: 3,
           },
-        },
-        {
-          label: '启用',
-          prop: 'isEnable',
-          show: true,
-          tdSlot: 'isEnable', // 自定义单元格内容的插槽名称
-        },
-        {
-          label: '操作',
-          fixed: 'right',
-          width: 180,
-          align: 'center',
-          tdSlot: 'operate', // 自定义单元格内容的插槽名称
-        },
-      ],
-      dynamicTableData: {
-        list: [
-          {
-            nickName: '李逍遥',
-            userEmail: '123@163.com',
-            tel: '15189764540',
-            sex: '男',
-            isEnable: 1,
+          // 分页配置
+          paginationConfig: {
+            layout: 'total, prev, pager, next, sizes', // 分页组件显示哪些功能
+            pageSize: 5, // 每页条数
+            pageSizes: [5, 10, 20, 50],
+            background: true,
           },
-          {
-            nickName: '赵灵儿',
-            userEmail: '456@163.com',
-            tel: '15189764541',
-            sex: '女',
-            isEnable: 1,
-          },
-          {
-            nickName: '林月如',
-            userEmail: '789@163.com',
-            tel: '15189764542',
-            sex: '女',
-            isEnable: 0,
-          },
-        ],
-        total: 3,
-      },
-      // 分页配置
-      paginationConfig: {
-        layout: 'total, prev, pager, next, sizes', // 分页组件显示哪些功能
-        pageSize: 5, // 每页条数
-        pageSizes: [5, 10, 20, 50],
-        background: true,
+        }
       },
     }
-  },
-}
 
-// 请求函数
-async getList(params) {
-  // console.log(params, 'params');
-  // params是从组件接收的，包含分页字段。
+    // 请求函数
+    async getList(params) {
+      // console.log(params, 'params');
+      // params是从组件接收的，包含分页字段。
 
-  // 1.静态数据
-  const _dynamicTableData = this.dynamicTableData;
-  // 必须要返回一个对象，包含data数组和total总数
-  return {
-    data: _dynamicTableData.list,
-    total: _dynamicTableData.total,
-  };
+      // 1.静态数据
+      const _dynamicTableData = this.dynamicTableData;
+      // 必须要返回一个对象，包含data数组和total总数
+      return {
+        data: _dynamicTableData.list,
+        total: _dynamicTableData.total,
+      };
 
-  // 2.动态数据
-  await this.$api
-    .listUser({
-      page: params.pageNum,
-      limit: params.pageSize,
-      searchName: this.filters[0].value,
-      phone: this.filters[1].value,
-    })
-    .then(data => {
-      if (data.code == 0) {
-        this.dynamicTableData.list = data.data;
-        this.dynamicTableData.total = data.count;
-      } else {
-        this.$message.error(data.msg);
-      }
-    });
-  // 必须要返回一个对象，包含data数组和total总数
-  return {
-    data: this.dynamicTableData.list,
-    total: this.dynamicTableData.total,
-  };
-},
+      // 2.动态数据
+      await this.$api
+        .listUser({
+          page: params.pageNum,
+          limit: params.pageSize,
+          searchName: this.filters[0].value,
+          phone: this.filters[1].value,
+        })
+        .then(data => {
+          if (data.code == 0) {
+            this.dynamicTableData.list = data.data;
+            this.dynamicTableData.total = data.count;
+          } else {
+            this.$message.error(data.msg);
+          }
+        });
+      // 必须要返回一个对象，包含data数组和total总数
+      return {
+        data: this.dynamicTableData.list,
+        total: this.dynamicTableData.total,
+      };
+    },
 
-// 表头改变
-columnsChange(columns1, columns2) {
-  console.log(columns1, columns2);
-},
-
-```
+    // 表头改变
+    columnsChange(columns1, columns2) {
+      console.log(columns1, columns2);
+    },
 
 ##### 问题解决、配置项、属性等
 
@@ -634,44 +609,41 @@ columnsChange(columns1, columns2) {
 
         1.  data: 列表数据的数组（数组 Array）
         2.  total：总数，用于分页（数值 Number）
-
-            ```javascript
             // 请求函数
             async getList(params) {
-              // console.log(params, 'params');
-              // params是从组件接收的，包含分页字段。
+            // console.log(params, 'params');
+            // params 是从组件接收的，包含分页字段。
 
-              // 1.静态数据
-              const _dynamicTableData = this.dynamicTableData;
-              // 必须要返回一个对象，包含data数组和total总数
-              return {
-                data: _dynamicTableData.list,
-                total: _dynamicTableData.total,
-              };
+                  // 1.静态数据
+                  const _dynamicTableData = this.dynamicTableData;
+                  // 必须要返回一个对象，包含data数组和total总数
+                  return {
+                    data: _dynamicTableData.list,
+                    total: _dynamicTableData.total,
+                  };
 
-              // 2.动态数据
-              await this.$api
-                .listUser({
-                  page: params.pageNum,
-                  limit: params.pageSize,
-                  searchName: this.filters[0].value,
-                  phone: this.filters[1].value,
-                })
-                .then(data => {
-                  if (data.code == 0) {
-                    this.dynamicTableData.list = data.data;
-                    this.dynamicTableData.total = data.count;
-                  } else {
-                    this.$message.error(data.msg);
-                  }
-                });
-              // 必须要返回一个对象，包含data数组和total总数
-              return {
-                data: this.dynamicTableData.list,
-                total: this.dynamicTableData.total,
-              };
-            },
-            ```
+                  // 2.动态数据
+                  await this.$api
+                    .listUser({
+                      page: params.pageNum,
+                      limit: params.pageSize,
+                      searchName: this.filters[0].value,
+                      phone: this.filters[1].value,
+                    })
+                    .then(data => {
+                      if (data.code == 0) {
+                        this.dynamicTableData.list = data.data;
+                        this.dynamicTableData.total = data.count;
+                      } else {
+                        this.$message.error(data.msg);
+                      }
+                    });
+                  // 必须要返回一个对象，包含data数组和total总数
+                  return {
+                    data: this.dynamicTableData.list,
+                    total: this.dynamicTableData.total,
+                  };
+                },
 
 2.  table 表格配置：支持[Table](https://element.eleme.cn/#/zh-CN/component/table#table-attributes)的所有属性
 3.  columns 列配置（数组 Array）
@@ -711,11 +683,8 @@ columnsChange(columns1, columns2) {
     | lang | 国际化配置 | string | cn/en | cn |
 7.  工具栏配置，工具栏默认是空的，提供一个具名插槽 toolbar，来自定义工具栏的内容
 8.  事件 columns-change，表头动态修改后的返回函数，函数返回两个值：
-
-```javascript
-columnsChange(columns1, columns2) {
-  // columns1：改变后的所有表头数据；
-  // columns2：改变后的当前显示的表头数据
-  console.log(columns1, columns2);
-},
-```
+    columnsChange(columns1, columns2) {
+    // columns1：改变后的所有表头数据；
+    // columns2：改变后的当前显示的表头数据
+    console.log(columns1, columns2);
+    },
