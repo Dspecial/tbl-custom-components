@@ -406,7 +406,7 @@ export default {
         .then(data => {
           if (data.code == 0) {
             this.dynamicTableData.list = data.data;
-            this.dynamicTableData.count = data.count;
+            this.dynamicTableData.total = data.count;
           } else {
             this.$message.error(data.msg);
           }
