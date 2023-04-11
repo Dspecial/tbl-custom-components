@@ -114,6 +114,9 @@
           lang="cn"
           @columns-change="columnsChange"
         >
+          <template slot="empty">
+            我是新的空页面
+          </template>
           <template #isEnable="scope">
             <el-switch v-model="scope.row.isEnable" :active-value="1" :inactive-value="0"></el-switch>
           </template>
@@ -383,11 +386,35 @@ export default {
     async getList(params) {
       // console.log(params, 'params');
       // params是从组件接收的，包含分页字段。
+
+      // 1.静态数据
       const _dynamicTableData = this.dynamicTableData;
       // 必须要返回一个对象，包含data数组和total总数
       return {
         data: _dynamicTableData.list,
         total: _dynamicTableData.total,
+      };
+
+      // 2.动态数据
+      await this.$api
+        .listUser({
+          page: params.pageNum,
+          limit: params.pageSize,
+          searchName: this.filters[0].value,
+          phone: this.filters[1].value,
+        })
+        .then(data => {
+          if (data.code == 0) {
+            this.dynamicTableData.list = data.data;
+            this.dynamicTableData.count = data.count;
+          } else {
+            this.$message.error(data.msg);
+          }
+        });
+      // 必须要返回一个对象，包含data数组和total总数
+      return {
+        data: this.dynamicTableData.list,
+        total: this.dynamicTableData.total,
       };
     },
 
@@ -395,8 +422,8 @@ export default {
     columnsChange(columns1, columns2) {
       // columns1：改变后的所有表头数据；
       // columns2：改变后的当前显示的表头数据
-      console.log(columns1, '改变后的所有表头数据');
-      console.log(columns2, '改变后的当前显示的表头数据');
+      // console.log(columns1, '改变后的所有表头数据');
+      // console.log(columns2, '改变后的当前显示的表头数据');
     },
   },
 };

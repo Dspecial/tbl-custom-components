@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sc-table">
     <!-- 参考文档：https://github.com/huzhushan/vue-pro-table -->
     <!-- 工具栏 -->
     <div class="toolbar">
@@ -38,6 +38,10 @@
 
       <!-- 表格 -->
       <el-table :data="tableData" v-bind="$attrs" v-on="$listeners">
+        <!-- 继承el-table的slot -->
+        <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
+          <slot :name="slotName" v-bind="slotProps" />
+        </template>
         <el-table-column
           v-for="(col, index) in table_columns"
           :key="col.label + index"
@@ -45,7 +49,7 @@
           :show-overflow-tooltip="!col.wrap"
           v-bind="col"
         >
-          <!-- slot -->
+          <!-- 新增的table-column的slot -->
           <template #header="scope" v-if="!!col.labelSlot">
             <slot :name="col.labelSlot" v-bind="scope"></slot>
           </template>
@@ -57,18 +61,21 @@
     </div>
 
     <!-- 分页 -->
-    <el-pagination
-      v-if="paginationConfig.show && total > 0"
-      class="pagination"
-      :background="paginationConfig.background"
-      @size-change="handleSizeChange"
-      :current-page.sync="pageNum"
-      @current-change="handleCurrentChange"
-      :page-sizes="paginationConfig.pageSizes"
-      :page-size.sync="pageSize"
-      :layout="paginationConfig.layout"
-      :total="total"
-    ></el-pagination>
+    <div class="pagination-bar" v-if="paginationConfig.show && total > 0">
+      <div class="pagination-wrap">
+        <el-pagination
+          class="pagination"
+          :background="paginationConfig.background"
+          @size-change="handleSizeChange"
+          :current-page.sync="pageNum"
+          @current-change="handleCurrentChange"
+          :page-sizes="paginationConfig.pageSizes"
+          :page-size.sync="pageSize"
+          :layout="paginationConfig.layout"
+          :total="total"
+        ></el-pagination>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -257,7 +264,7 @@ export default {
     }
   }
 }
-.pagination {
+.pagination-wrap {
   padding: 20px 0;
   text-align: right;
   :last-child {
