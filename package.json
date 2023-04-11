@@ -1,6 +1,6 @@
 {
   "name": "tbl-custom-components",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "private": false,
   "license": "MIT",
   "main": "lib/tbl-custom-components.umd.min.js",
@@ -10,14 +10,15 @@
     "lib": "vue-cli-service build  --target lib --dest lib src/components/index.js"
   },
   "dependencies": {
-    "deepmerge": "^4.3.0",
     "element-ui": "^2.15.13",
-    "vue": "^2.6.14"
+    "vue": "^2.6.14",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "core-js": "^3.26.1",
+    "deepmerge": "^4.3.1",
     "moment": "^2.29.4",
     "node-sass": "^4.14.1",
     "sass": "^1.26.5",

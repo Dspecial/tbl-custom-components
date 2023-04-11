@@ -61,7 +61,7 @@ import 'tbl-custom-components/lib/tbl-custom-components.css'; // 自定义组件
 
 - ##### 介绍
 
-基于`element-ui`，二次封装 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker)组件，继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性和方法
+基于`element-ui`，二次封装 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker)组件，继承 该组件的所有属性、事件和方法
 
 添加了昨日、今日、上周、本周、上月、本月、过去 7 天、过去 30 天、过去 90 天等快捷按钮
 
@@ -114,14 +114,30 @@ export default {
 
 1. btnOption 不配置的话默认所有按钮都显示，配置为{}空对象时 所有按钮钧不显示；
 
+| 参数         | 说明                       | 类型    | 可选值     | 默认值 |
+| ------------ | -------------------------- | ------- | ---------- | ------ |
+| isYesterday  | 是否显示 昨日 的按钮       | boolean | false/true | true   |
+| isToday      | 是否显示 今日 的按钮       | boolean | false/true | true   |
+| isPreWeek    | 是否显示 上周 的按钮       | boolean | false/true | true   |
+| isThisWeek   | 是否显示 本周 的按钮       | boolean | false/true | true   |
+| isPreMonth   | 是否显示 上月 的按钮       | boolean | false/true | true   |
+| isThisMonth  | 是否显示 本月 的按钮       | boolean | false/true | true   |
+| isLast7days  | 是否显示 过去 7 天 的按钮  | boolean | false/true | true   |
+| isLast30days | 是否显示 过去 30 天 的按钮 | boolean | false/true | true   |
+| isLast90days | 是否显示 过去 90 天 的按钮 | boolean | false/true | true   |
+
 2. 如使用 picker-options 来限制日期选择范围，或者设置周起始日 firstDayOfWeek，或者设置日期的类名 cellClassName 时，当需要显示快捷按钮，则必须加上 shortcuts: []，否则无快捷按钮；
    不配置 picker-options 时，默认是有快捷按钮的；
 
-3. picker-options 所有属性和参数 详见 [参考地址](https://element.eleme.cn/#/zh-CN/component/datetime-picker#picker-options);
+3. picker-options 所有属性和参数 详见 [picker-options 参考地址](https://element.eleme.cn/#/zh-CN/component/datetime-picker#picker-options);
 
-4. 继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性和方法；
+4. 继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性、事件和方法；
 
-5. lang（国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+5. lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+| 参数 | 说明       | 类型   | 可选值 | 默认值 |
+| ---- | ---------- | ------ | ------ | ------ |
+| lang | 国际化配置 | string | cn/en  | cn     |
 
 > #### tbl-tooltip-over 文字超出范围
 
@@ -160,13 +176,24 @@ export default {
 
 1. 继承[Tooltip](https://element.eleme.cn/#/zh-CN/component/tooltip) 的所有属性和方法；
 
-2. content（显示文字|字符串/数值）：文本显示；
+2. content 显示文字；
 
-3. slot 插槽 1: contentTip 可用来显示 tooltip 的弹出层；
+| 参数    | 说明     | 类型          | 可选值 | 默认值 |
+| ------- | -------- | ------------- | ------ | ------ |
+| content | 文本显示 | string/number | -      | -      |
 
-4. slot 插槽 2: contentOver 用来页面显示（即有省略号的那部分）；
+3. lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
-5. lang（国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+| 参数 | 说明       | 类型   | 可选值 | 默认值 |
+| ---- | ---------- | ------ | ------ | ------ |
+| lang | 国际化配置 | string | cn/en  | cn     |
+
+4. slot 插槽：
+
+| 参数        | 说明                                         | 类型          | 可选值 | 默认值 |
+| ----------- | -------------------------------------------- | ------------- | ------ | ------ |
+| contentTip  | 具名插槽，可用来显示 tooltip 的弹出层        | string/number | -      | -      |
+| contentOver | 具名插槽，用来页面显示（即有省略号的那部分） | string/number | -      | -      |
 
 > #### tbl-icon-picker 图标选择器
 
@@ -191,11 +218,32 @@ export default {
 
 - ##### 问题解决、配置项、属性等
 
-1. type 可配置成 'wisdom'/'noah' ,默认 'noah',需要在工程项目中事先引入对应的图标库，方可使用；
+1. type 自定义图标类型，需要在工程项目中事先引入对应的图标库，方可使用
 
-2. placeholder（占位文字:继承 input）、disabled（是否禁用：继承 input）、placement（弹出框位置：继承 popover）等都可配；
+```
+/* 引入自定义wisdom 图标（在线引用，项目中还是推荐下载下来使用） */
+@import '//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css';
+/* 引入自定义noah 图标（在线引用，项目中还是推荐下载下来使用） */
+@import '//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css';
+```
 
-3. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+| 参数 | 说明           | 类型   | 可选值      | 默认值 |
+| ---- | -------------- | ------ | ----------- | ------ |
+| type | 自定义图标类型 | string | wisdom/noah | noah   |
+
+2. 可配参数
+
+| 参数        | 说明                                                                                      | 类型    | 可选值                                                                                                    | 默认值 |
+| ----------- | ----------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- | ------ |
+| placeholder | 占位字符，继承 [Input](https://element.eleme.cn/#/zh-CN/component/input#input-attributes) | string  | -                                                                                                         | -      |
+| disabled    | 是否禁用，继承 [Input](https://element.eleme.cn/#/zh-CN/component/input#input-attributes) | boolean | false/true                                                                                                | false  |
+| placement   | 弹出框位置，继承 [Popover](https://element.eleme.cn/#/zh-CN/component/popover#attributes) | string  | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom |
+
+3. lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+| 参数 | 说明       | 类型   | 可选值 | 默认值 |
+| ---- | ---------- | ------ | ------ | ------ |
+| lang | 国际化配置 | string | cn/en  | cn     |
 
 > #### tbl-table-transfer 表格穿梭框
 
@@ -364,21 +412,28 @@ export default {
 - ##### 问题解决、配置项、属性等
 
 1. 可配参数：
-   maxHeight（表格最大高度|字符串）
-   minHeight（表格最小高度|字符串）
-   tableStripe（表格斑马线|布尔值）
-   tableBorder（表格边框|布尔值）
-   tableRowKey（表格行数据的 key）
-   showQuery（显示查询条件|布尔值）
-   showPagination（显示分页|布尔值）
-   paginationCallBack（左侧分页回调|函数）
-   titleTexts（标题文本|数组（数组中字符串））
-   buttonTexts（按钮文本|数组（数组中字符串））
-   queryTexts（查询按钮文本|数组（数组中字符串））
-   leftColumns（左侧参数|数组）
-   rightColumns（右侧参数|数组）；
 
-2. lang （国际化|字符串），目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+| 参数               | 说明             | 类型                                        | 可选值     | 默认值               |
+| ------------------ | ---------------- | ------------------------------------------- | ---------- | -------------------- |
+| maxHeight          | 表格最大高度     | string                                      | -          | '500px'              |
+| maxHeight          | 表格最小高度     | string                                      | -          | '300px'              |
+| tableStripe        | 表格斑马线       | string                                      | false/true | false                |
+| tableBorder        | 表格边框         | boolean                                     | false/true | false                |
+| tableRowKey        | 表格行数据的 key | string/number                               | -          | row.id               |
+| showQuery          | 显示查询条件     | boolean                                     | false/true | false                |
+| showPagination     | 显示分页         | boolean                                     | false/true | false                |
+| paginationCallBack | 左侧分页回调     | Function(obj) // obj-参数为查询条件的返回值 | -          | -                    |
+| titleTexts         | 标题文本         | Array[string]                               | -          | ['待选项', '已选项'] |
+| buttonTexts        | 按钮文本         | Array[string]                               | -          | []                   |
+| queryTexts         | 查询按钮文本     | Array[string]                               | -          | ['查询', '筛选']     |
+| leftColumns        | 左侧参数         | Array[{}]                                   | -          | []                   |
+| rightColumns       | 右侧参数         | Array[{}]                                   | -          | []                   |
+
+2. lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+| 参数 | 说明       | 类型   | 可选值 | 默认值 |
+| ---- | ---------- | ------ | ------ | ------ |
+| lang | 国际化配置 | string | cn/en  | cn     |
 
 > #### tbl-cron cron 表达式选择器
 
@@ -421,13 +476,17 @@ export default {
 
 - ##### 问题解决、配置项、属性等
 
-1. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+1. lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+| 参数 | 说明       | 类型   | 可选值 | 默认值 |
+| ---- | ---------- | ------ | ------ | ------ |
+| lang | 国际化配置 | string | cn/en  | cn     |
 
 > #### tbl-dynamic-tables 动态表格
 
 - ##### 介绍
 
-基于[el-table](https://element.eleme.cn/#/zh-CN/component/table)+[el-pagination](https://element.eleme.cn/#/zh-CN/component/pagination) 组件,实现表格+分页的封装，另外配置了动态表头，使表格能根据自定义选择的表头动态渲染。
+基于[Table](https://element.eleme.cn/#/zh-CN/component/table)+[Pagination](https://element.eleme.cn/#/zh-CN/component/pagination) 组件,实现表格+分页的封装，另外配置了动态表头，使表格能根据自定义选择的表头动态渲染。
 
 将列表、分页三者的交互逻辑封装到组件中，节省开发者代码量
 配置化的表格项，跟 el-table-column 的配置属性类似
@@ -447,6 +506,9 @@ export default {
   lang="cn"
   @columns-change="columnsChange"
 >
+  <template #isEnable="scope">
+    <el-switch v-model="scope.row.isEnable" :active-value="1" :inactive-value="0"></el-switch>
+  </template>
   <template #operate="scope">
     <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
     <el-button size="mini" type="danger">删除</el-button>
@@ -458,16 +520,43 @@ export default {
   data() {
     return {
       // 表格
+      // 表格
       columns: [
-        { label: '序号', type: 'index', show: true },
-        { label: '名称', prop: 'nickName', show: true, required: true },
-        { label: '邮箱2', prop: 'userEmail2', show: true },
-        { label: '邮箱3', prop: 'userEmail3', show: true },
-        { label: '邮箱4', prop: 'userEmail4', show: true },
-        { label: '邮箱5', prop: 'userEmail5', show: true },
+        { label: '', type: 'selection', show: true },
+        { label: '序号', type: 'index', show: false },
+        { label: '角色名称', prop: 'nickName', show: true, required: true },
+        { label: '邮箱', prop: 'userEmail', show: true },
+        { label: '电话', prop: 'tel', show: true },
+        {
+          label: '性别',
+          prop: 'sex',
+          show: true,
+          formatter: function(row, column, cellValue, index) {
+            if (cellValue == '男') {
+              return (
+                <span>
+                  <i style='background-color:#f00;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
+                  {cellValue}
+                </span>
+              ); // 此处注意jsx的语法规则
+            } else {
+              return (
+                <span>
+                  <i style='backgroundColor:#0f0;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
+                  {cellValue}
+                </span>
+              ); // 此处注意jsx的语法规则
+            }
+          },
+        },
+        {
+          label: '启用',
+          prop: 'isEnable',
+          show: true,
+          tdSlot: 'isEnable', // 自定义单元格内容的插槽名称
+        },
         {
           label: '操作',
-          show: true,
           fixed: 'right',
           width: 180,
           align: 'center',
@@ -477,23 +566,35 @@ export default {
       dynamicTableData: {
         list: [
           {
-            index: 1,
-            nickName: '刘亦菲',
+            nickName: '李逍遥',
             userEmail: '123@163.com',
+            tel: '15189764540',
+            sex: '男',
+            isEnable: 1,
           },
           {
-            index: 1,
-            nickName: '胡歌',
+            nickName: '赵灵儿',
             userEmail: '456@163.com',
+            tel: '15189764541',
+            sex: '女',
+            isEnable: 1,
+          },
+          {
+            nickName: '林月如',
+            userEmail: '789@163.com',
+            tel: '15189764542',
+            sex: '女',
+            isEnable: 0,
           },
         ],
-        total: 2,
+        total: 3,
       },
       // 分页配置
       paginationConfig: {
         layout: 'total, prev, pager, next, sizes', // 分页组件显示哪些功能
         pageSize: 5, // 每页条数
         pageSizes: [5, 10, 20, 50],
+        background: true,
       },
     }
   },
@@ -531,55 +632,85 @@ columnsChange(columns1, columns2) {
 ```
 dynamicTableData: {
     list: [
-      {
-        index: 1,
-        nickName: '刘亦菲',
-        userEmail: '123@163.com',
-      },
-      {
-        index: 1,
-        nickName: '胡歌',
-        userEmail: '456@163.com',
-      },
+        {
+            nickName: '李逍遥',
+            userEmail: '123@163.com',
+            tel: '15189764540',
+            sex: '男',
+            isEnable: 1,
+        },
+        {
+            nickName: '赵灵儿',
+            userEmail: '456@163.com',
+            tel: '15189764541',
+            sex: '女',
+            isEnable: 1,
+        },
+        {
+            nickName: '林月如',
+            userEmail: '789@163.com',
+            tel: '15189764542',
+            sex: '女',
+            isEnable: 0,
+        },
     ],
-    total: 2,
+    total: 3,
 }
 ```
 
-2. table 表格配置：支持[el-table](https://element.eleme.cn/#/zh-CN/component/table#table-attributes)的所有属性
+2. table 表格配置：支持[Table](https://element.eleme.cn/#/zh-CN/component/table#table-attributes)的所有属性
+
 3. columns 列配置（数组 Array）
 
-| 参数      | 说明                                                                                                      | 类型                    | 可选值                 | 默认值 |
-| --------- | --------------------------------------------------------------------------------------------------------- | ----------------------- | ---------------------- | ------ |
-| label     | 对应 el-table-column 的 label                                                                             | string                  | -                      | -      |
-| type      | 对应 el-table-column 的 type                                                                              | string                  | selection/index/expand | -      |
-| prop      | 对应 el-table-column 的 prop                                                                              | string                  | -                      | -      |
-| width     | 对应 el-table-column 的 width                                                                             | string,number           | -                      | -      |
-| minWidth  | 对应 el-table-column 的 min-width                                                                         | string,number           | -                      | -      |
-| align     | 对应 el-table-column 的 align                                                                             | string                  | left/center/right      | left   |
-| fixed     | 对应 el-table-column 的 fixed                                                                             | string,boolean          | true, left, right      | -      |
-| sortable  | 对应 el-table-column 的 sortable                                                                          | boolean                 | false/true             | false  |
-| filters   | 对应 el-table-column 的 filters                                                                           | Array\[{ text, value }] | -                      | -      |
-| ...       | ...                                                                                                       | ...                     | ...                    | ...    |
-| 以上 ↑↑↑  | 支持[el-table-column](https://element.eleme.cn/#/zh-CN/component/table#table-column-attributes)的所有属性 | ↑                       | ↑                      | ↑      |
-| 新增 ↓↓↓  | ↓                                                                                                         | ↓                       | ↓                      | ↓      |
-| tdSlot    | 单元格要自定义内容时，可以通过此属性配置一个插槽名称，并且是作用域插槽，可以接收 scope 数据               | string                  | -                      | -      |
-| labelSlot | 表头要自定义内容时，可以通过此属性配置一个插槽名称，并且是作用域插槽，可以接收 scope 数据                 | string                  | -                      | -      |
-| show      | 是否显示该列                                                                                              | boolean                 | false/true             | true   |
-| required  | 某列必填，不可隐藏                                                                                        | boolean                 | false/true             | -      |
+| 参数      | 说明                                                                                                      | 类型                                    | 可选值                 | 默认值                                                                                                                  |
+| --------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| label     | 对应 el-table-column 的 label                                                                             | string                                  | -                      | -                                                                                                                       |
+| type      | 对应 el-table-column 的 type                                                                              | string                                  | selection/index/expand | -                                                                                                                       |
+| prop      | 对应 el-table-column 的 prop                                                                              | string                                  | -                      | -                                                                                                                       |
+| width     | 对应 el-table-column 的 width                                                                             | string,number                           | -                      | -                                                                                                                       |
+| minWidth  | 对应 el-table-column 的 min-width                                                                         | string,number                           | -                      | -                                                                                                                       |
+| align     | 对应 el-table-column 的 align                                                                             | string                                  | left/center/right      | left                                                                                                                    |
+| fixed     | 对应 el-table-column 的 fixed                                                                             | string,boolean                          | true, left, right      | -                                                                                                                       |
+| sortable  | 对应 el-table-column 的 sortable                                                                          | boolean                                 | false/true             | false                                                                                                                   |
+| filters   | 对应 el-table-column 的 filters                                                                           | Array\[{ text, value }]                 | -                      | -                                                                                                                       |
+| formatter | 对应 el-table-column 的 formatter                                                                         | Function(row, column, cellValue, index) | -                      | -                                                                                                                       |
+| ...       | ...                                                                                                       | ...                                     | ...                    | ...                                                                                                                     |
+| 以上 ↑↑↑  | 支持[el-table-column](https://element.eleme.cn/#/zh-CN/component/table#table-column-attributes)的所有属性 | ↑                                       | ↑                      | ↑                                                                                                                       |
+| 新增 ↓↓↓  | ↓                                                                                                         | ↓                                       | ↓                      | ↓                                                                                                                       |
+| tdSlot    | 单元格要自定义内容时，可以通过此属性配置一个插槽名称，并且是作用域插槽，可以接收 scope 数据               | string                                  | -                      | -                                                                                                                       |
+| labelSlot | 表头要自定义内容时，可以通过此属性配置一个插槽名称，并且是作用域插槽，可以接收 scope 数据                 | string                                  | -                      | -                                                                                                                       |
+| show      | 设置动态表头时，是否显示该列                                                                              | boolean                                 | false/true             | true                                                                                                                    |
+| required  | 设置动态表头时，某列必选，不可在下拉中隐藏                                                                | boolean                                 | false/true             | 当 columns 中都不填写 required 或者 required 都为 false 时，默认除 type=index/section/expend 后的第一列为 required=true |
 
 4. pagination 分页配置（对象 Object）,如果不想显示分页，将 pagination 设置为 false
 
-| 参数      | 说明                         | 类型          | 可选值                                  | 默认值                                  |
-| --------- | ---------------------------- | ------------- | --------------------------------------- | --------------------------------------- |
-| layout    | 组件布局                     | string        | total, sizes, prev, pager, next, jumper | total, sizes, prev, pager, next, jumper |
-| pageSize  | 每页显示条目个数             | number        | -                                       | 10                                      |
-| pageSizes | 每页显示个数选择器的选项设置 | Array[number] | -                                       | [10, 20, 30, 40, 50, 100]               |
+| 参数       | 说明                         | 类型          | 可选值                                  | 默认值                                  |
+| ---------- | ---------------------------- | ------------- | --------------------------------------- | --------------------------------------- |
+| layout     | 组件布局                     | string        | total, sizes, prev, pager, next, jumper | total, sizes, prev, pager, next, jumper |
+| pageSize   | 每页显示条目个数             | number        | -                                       | 10                                      |
+| pageSizes  | 每页显示个数选择器的选项设置 | Array[number] | -                                       | [10, 20, 30, 40, 50, 100]               |
+| background | 是否为分页按钮添加背景色     | boolean       | -                                       | false                                   |
 
-5. 工具栏配置，工具栏默认是空的，提供一个具名插槽 toolbar，来自定义工具栏的内容
-6. dynamicColumns(显示动态表头|布尔值)，默认为 true，目前支持 false|true
-7. lang (国际化|字符串)，目前支持 'en'|'cn', 当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
-8. 事件 columns-change，表头动态修改后的返回函数，函数返回两个值：
+5. dynamicColumns 显示动态表头
 
-- columns1：改变后的所有表头数据；
-- columns2：改变后的当前显示的表头数据
+| 参数           | 说明             | 类型    | 可选值     | 默认值 |
+| -------------- | ---------------- | ------- | ---------- | ------ |
+| dynamicColumns | 是否显示动态表头 | boolean | false/true | true   |
+
+6. lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+
+| 参数 | 说明       | 类型   | 可选值 | 默认值 |
+| ---- | ---------- | ------ | ------ | ------ |
+| lang | 国际化配置 | string | cn/en  | cn     |
+
+7. 工具栏配置，工具栏默认是空的，提供一个具名插槽 toolbar，来自定义工具栏的内容
+
+8. 事件 columns-change，表头动态修改后的返回函数，函数返回三个值：
+
+```
+columnsChange(columns1, columns2) {
+    // columns1：改变后的所有表头数据；
+    // columns2：改变后的当前显示的表头数据
+    console.log(columns1, columns2);
+},
+```

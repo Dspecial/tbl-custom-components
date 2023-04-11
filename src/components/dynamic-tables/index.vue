@@ -18,21 +18,28 @@
             <span>{{ colSettingTitle }}</span>
             <i class="el-icon-close" @click="closeDrop"></i>
           </h5>
-          <div v-for="(tr, j) in columns" :key="j" class="content">
-            <el-dropdown-item :command="tr.type === 'selection' ? '多选' : tr.label + ':' + j" :disabled="tr.required" class="colItem">
-              <div class="cell" @click="colChange(tr)">
-                <span>{{ tr.type === 'selection' ? '多选' : tr.label }}</span>
-                <i class="el-icon-check" v-if="tr.show"></i>
+          <draggable v-model="dropdown_columns" v-bind="dragOptions" @start="drag = true" @end="drag = false" handle=".handle" @change="moveChange">
+            <transition-group type="transition">
+              <div v-for="(tr, j) in dropdown_columns" :key="tr.label + j" class="content">
+                <el-dropdown-item :command="tr.type === 'selection' ? '多选' : tr.label + ':' + j" :disabled="tr.required" class="colItem">
+                  <div class="cell" @click="colChange(tr)">
+                    <span>
+                      <i class="el-icon-s-unfold handle"></i>
+                      {{ tr.type === 'selection' ? '多选' : tr.label }}
+                    </span>
+                    <i class="el-icon-check" v-if="tr.show"></i>
+                  </div>
+                </el-dropdown-item>
               </div>
-            </el-dropdown-item>
-          </div>
+            </transition-group>
+          </draggable>
         </el-dropdown-menu>
       </el-dropdown>
 
       <!-- 表格 -->
       <el-table :data="tableData" v-bind="$attrs" v-on="$listeners">
         <el-table-column
-          v-for="(col, index) in _columns"
+          v-for="(col, index) in table_columns"
           :key="col.label + index"
           :filter-method="col.filters && filterHandler"
           :show-overflow-tooltip="!col.wrap"
@@ -53,7 +60,7 @@
     <el-pagination
       v-if="paginationConfig.show && total > 0"
       class="pagination"
-      :style="paginationConfig.style"
+      :background="paginationConfig.background"
       @size-change="handleSizeChange"
       :current-page.sync="pageNum"
       @current-change="handleCurrentChange"
@@ -65,6 +72,7 @@
   </div>
 </template>
 <script>
+import draggable from 'vuedraggable';
 import { use, t } from '../../locale/index';
 import en from '../../locale/lang/en';
 import cn from '../../locale/lang/zh-CN';
@@ -99,24 +107,28 @@ export default {
       default: true,
     },
   },
-  components: {},
+  components: {
+    draggable,
+  },
   data() {
     let paginationConfig = {
       show: false,
     };
     if (typeof this.pagination === 'object') {
-      const { layout, pageSizes, style } = this.pagination;
+      const { layout, pageSizes, background } = this.pagination;
       paginationConfig = {
         show: true,
         layout: layout || 'total, sizes, prev, pager, next, jumper',
         pageSizes: pageSizes || [10, 20, 30, 40, 50, 100],
-        style: style || {},
+        background: background || false,
       };
     }
 
     return {
       colSettingTitle: '', // 表头设置
-      _columns: [],
+      dropdown_columns: this.columns,
+      drag: false,
+      table_columns: this.columns,
       tableData: [],
       total: 0,
       pageNum: 1,
@@ -124,15 +136,46 @@ export default {
       paginationConfig,
     };
   },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      };
+    },
+  },
+  watch: {
+    table_columns: {
+      handler(newVal, oldVal) {
+        this.sendDynamicColumns(this.columns, this.dropdown_columns, newVal);
+      },
+      deep: true,
+    },
+  },
   created() {
-    this._columns = this.columns.filter(item => {
+    // 动态表头
+    this.table_columns = this.dropdown_columns.filter(item => {
       if (item.show === undefined) {
         item.show = true;
       }
       return item.show;
     });
-    // 请求列表数据
-    this.getTableData();
+
+    // 可显隐的下拉表头
+    // columns 没有required的字段，则给非特殊项的第一列加上required
+    this.dropdown_columns = this.columns;
+    var isFlag = false;
+    isFlag = this.dropdown_columns.some(item => item.required);
+    if (!isFlag) {
+      this.dropdown_columns.find((item, index) => {
+        if (item.type !== 'selection' && item.type !== 'index' && item.type !== 'expend') {
+          item.required = true;
+          return item;
+        }
+      });
+    }
   },
   mounted() {
     if (this.lang == 'en') {
@@ -141,6 +184,8 @@ export default {
       use(cn);
     }
     this.colSettingTitle = t('custom.dynamicsTable.colSettingTitle');
+    // 请求列表数据
+    this.getTableData();
   },
   methods: {
     // 请求列表数据
@@ -161,16 +206,24 @@ export default {
       this.pageNum = 1;
       this.getTableData();
     },
-    // 表头设置
+    // 表头设置-勾选
     colChange(item) {
       item.show = !item.show;
-      this._columns = this.columns.filter(item => {
+      this.table_columns = this.dropdown_columns.filter(item => {
         if (item.show === undefined) {
           item.show = true;
         }
         return item.show;
       });
-      this.sendDynamicColumns(this.columns, this._columns);
+    },
+    // 表头设置-拖拽
+    moveChange(val) {
+      this.table_columns = this.dropdown_columns.filter(item => {
+        if (item.show === undefined) {
+          item.show = true;
+        }
+        return item.show;
+      });
     },
     // 关闭表头设置
     closeDrop() {
@@ -183,6 +236,8 @@ export default {
     },
     // 抛出动态表头
     sendDynamicColumns(columns1, columns2) {
+      // columns1：改变后的所有表头数据；
+      // columns2：改变后的当前显示的表头数据
       this.$emit('columns-change', columns1, columns2);
     },
   },
@@ -203,7 +258,7 @@ export default {
   }
 }
 .pagination {
-  padding: 0 20px 20px;
+  padding: 20px 0;
   text-align: right;
   :last-child {
     margin-right: 0;
@@ -234,6 +289,12 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      .handle {
+        cursor: move;
+        height: 20px;
+        line-height: 20px;
+        padding-right: 10px;
+      }
     }
   }
 }

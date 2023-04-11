@@ -114,6 +114,9 @@
           lang="cn"
           @columns-change="columnsChange"
         >
+          <template #isEnable="scope">
+            <el-switch v-model="scope.row.isEnable" :active-value="1" :inactive-value="0"></el-switch>
+          </template>
           <template #operate="scope">
             <el-button size="mini" type="primary">编辑{{ scope.row.index }}</el-button>
             <el-button size="mini" type="danger">删除</el-button>
@@ -214,11 +217,37 @@ export default {
       columns: [
         { label: '', type: 'selection', show: true },
         { label: '序号', type: 'index', show: false },
-        { label: '名称', prop: 'nickName', show: true, required: true },
-        { label: '邮箱2', prop: 'userEmail2', show: true },
-        { label: '邮箱3', prop: 'userEmail3', show: true },
-        { label: '邮箱4', prop: 'userEmail4', show: true },
-        { label: '邮箱5', prop: 'userEmail5', show: true },
+        { label: '角色名称', prop: 'nickName', show: true, required: true },
+        { label: '邮箱', prop: 'userEmail', show: true, required: true },
+        { label: '电话', prop: 'tel', show: true },
+        {
+          label: '性别',
+          prop: 'sex',
+          show: true,
+          formatter: function(row, column, cellValue, index) {
+            if (cellValue == '男') {
+              return (
+                <span>
+                  <i style='background-color:#f00;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
+                  {cellValue}
+                </span>
+              ); // 此处注意jsx的语法规则
+            } else {
+              return (
+                <span>
+                  <i style='backgroundColor:#0f0;display: inline-block;border-radius: 50%;width:6px;height:6px;margin-right:3px'></i>
+                  {cellValue}
+                </span>
+              ); // 此处注意jsx的语法规则
+            }
+          },
+        },
+        {
+          label: '启用',
+          prop: 'isEnable',
+          show: true,
+          tdSlot: 'isEnable', // 自定义单元格内容的插槽名称
+        },
         {
           label: '操作',
           fixed: 'right',
@@ -230,23 +259,35 @@ export default {
       dynamicTableData: {
         list: [
           {
-            index: 1,
-            nickName: '刘亦菲',
+            nickName: '李逍遥',
             userEmail: '123@163.com',
+            tel: '15189764540',
+            sex: '男',
+            isEnable: 1,
           },
           {
-            index: 1,
-            nickName: '胡歌',
+            nickName: '赵灵儿',
             userEmail: '456@163.com',
+            tel: '15189764541',
+            sex: '女',
+            isEnable: 1,
+          },
+          {
+            nickName: '林月如',
+            userEmail: '789@163.com',
+            tel: '15189764542',
+            sex: '女',
+            isEnable: 0,
           },
         ],
-        total: 2,
+        total: 3,
       },
       // 分页配置
       paginationConfig: {
         layout: 'total, prev, pager, next, sizes', // 分页组件显示哪些功能
         pageSize: 5, // 每页条数
         pageSizes: [5, 10, 20, 50],
+        background: true,
       },
     };
   },
@@ -340,7 +381,7 @@ export default {
 
     // 请求函数
     async getList(params) {
-      console.log(params, 'params');
+      // console.log(params, 'params');
       // params是从组件接收的，包含分页字段。
       const _dynamicTableData = this.dynamicTableData;
       // 必须要返回一个对象，包含data数组和total总数
@@ -352,7 +393,10 @@ export default {
 
     // 表头改变
     columnsChange(columns1, columns2) {
-      console.log(columns1, columns2);
+      // columns1：改变后的所有表头数据；
+      // columns2：改变后的当前显示的表头数据
+      console.log(columns1, '改变后的所有表头数据');
+      console.log(columns2, '改变后的当前显示的表头数据');
     },
   },
 };
