@@ -1,6 +1,5 @@
 <template>
   <div class="sc-table">
-    <!-- 参考文档：https://github.com/huzhushan/vue-pro-table -->
     <!-- 工具栏 -->
     <div class="toolbar">
       <slot name="toolbar"></slot>
@@ -21,12 +20,10 @@
           <draggable v-model="dropdown_columns" v-bind="dragOptions" @start="drag = true" @end="drag = false" handle=".handle" @change="moveChange">
             <transition-group type="transition">
               <div v-for="(tr, j) in dropdown_columns" :key="tr.label + j" class="content">
+                <i class="el-icon-s-unfold handle"></i>
                 <el-dropdown-item :command="tr.type === 'selection' ? '多选' : tr.label + ':' + j" :disabled="tr.required" class="colItem">
                   <div class="cell" @click="colChange(tr)">
-                    <span>
-                      <i class="el-icon-s-unfold handle"></i>
-                      {{ tr.type === 'selection' ? '多选' : tr.label }}
-                    </span>
+                    {{ tr.type === 'selection' ? '多选' : tr.label }}
                     <i class="el-icon-check" v-if="tr.show"></i>
                   </div>
                 </el-dropdown-item>
@@ -113,6 +110,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    // 将表格存储到localStorage的itemKey
+    storageKey: {
+      type: String,
+      default: '',
+    },
   },
   components: {
     draggable,
@@ -156,19 +158,14 @@ export default {
   watch: {
     table_columns: {
       handler(newVal, oldVal) {
-        this.sendDynamicColumns(this.columns, this.dropdown_columns, newVal);
+        this.sendDynamicColumns(this.dropdown_columns, newVal);
       },
       deep: true,
     },
   },
   created() {
-    // 动态表头
-    this.table_columns = this.dropdown_columns.filter(item => {
-      if (item.show === undefined) {
-        item.show = true;
-      }
-      return item.show;
-    });
+    // 表格重载
+    this.reloadTable();
 
     // 可显隐的下拉表头
     // columns 没有required的字段，则给非特殊项的第一列加上required
@@ -213,9 +210,18 @@ export default {
       this.pageNum = 1;
       this.getTableData();
     },
+    // 表格重置
+    reSet() {
+      this.pageNum = 1;
+    },
     // 表头设置-勾选
     colChange(item) {
       item.show = !item.show;
+      // 表格重载
+      this.reloadTable();
+    },
+    // 表格重载
+    reloadTable() {
       this.table_columns = this.dropdown_columns.filter(item => {
         if (item.show === undefined) {
           item.show = true;
@@ -246,6 +252,25 @@ export default {
       // columns1：改变后的所有表头数据；
       // columns2：改变后的当前显示的表头数据
       this.$emit('columns-change', columns1, columns2);
+      this.saveColumns(columns1);
+    },
+    // 表头信息存储到localStorage中
+    saveColumns(columns) {
+      if (this.storageKey) {
+        localStorage.setItem(this.storageKey, JSON.stringify(columns));
+      }
+    },
+    // 获取存储在localStorage中的表头信息
+    getColumns() {
+      return localStorage.getItem(this.storageKey) === undefined ? this.columns : JSON.parse(localStorage.getItem(this.storageKey));
+    },
+    // 重新设置表格的动态表头
+    setColumns(columns) {
+      if (columns) {
+        this.dropdown_columns = columns;
+        // 表格重载
+        this.reloadTable();
+      }
     },
   },
 };
@@ -288,19 +313,30 @@ export default {
       cursor: pointer;
     }
   }
-  .colItem {
-    font-size: 14px;
-    line-height: normal;
+
+  .content {
+    display: flex;
+    align-items: center;
     padding: 10px 15px;
-    .cell {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .handle {
-        cursor: move;
-        height: 20px;
-        line-height: 20px;
-        padding-right: 10px;
+    > i.handle {
+      cursor: move;
+      height: 20px;
+      line-height: 20px;
+      padding-right: 10px;
+      opacity: 0.8;
+    }
+    .colItem {
+      font-size: 14px;
+      line-height: normal;
+      flex: 0 1 100%;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+      .cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
     }
   }

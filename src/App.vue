@@ -107,10 +107,12 @@
       <p>6. el-table+分页+表头动态显隐的表格：</p>
       <div style="width:800px">
         <tbl-dynamic-tables
+          ref="dynamicTable"
           :request="getList"
           :columns="columns"
           :pagination="paginationConfig"
           :dynamicColumns="true"
+          storageKey="testTableColumns"
           lang="cn"
           @columns-change="columnsChange"
         >
@@ -295,7 +297,10 @@ export default {
     };
   },
   components: {},
-  mounted() {},
+  mounted() {
+    var newColumns = this.$refs.dynamicTable.getColumns();
+    this.$refs.dynamicTable.setColumns(newColumns);
+  },
   methods: {
     onChange(val) {
       console.log(val, '获取到绑定的时间范围值');
@@ -422,8 +427,12 @@ export default {
     columnsChange(columns1, columns2) {
       // columns1：改变后的所有表头数据；
       // columns2：改变后的当前显示的表头数据
-      // console.log(columns1, '改变后的所有表头数据');
-      // console.log(columns2, '改变后的当前显示的表头数据');
+    },
+
+    // 重置
+    reSet() {
+      this.$refs.dynamicTable.reSet();
+      this.getList();
     },
   },
 };

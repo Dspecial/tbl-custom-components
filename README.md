@@ -475,6 +475,7 @@
       :columns="columns"
       :pagination="paginationConfig"
       :dynamicColumns="true"
+      storageKey="testTableColumns"
       lang="cn"
       @columns-change="columnsChange"
     >
@@ -696,16 +697,55 @@
     | :------------- | :--------------- | :------ | :--------- | :----- |
     | dynamicColumns | 是否显示动态表头 | boolean | false/true | true   |
 
-6.  lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+6.  storageKey 表头存储到 localStorage 的键值&#x20;
+
+    | 参数       | 说明                                                                                                                                                                                            | 类型   | 可选值 | 默认值 |
+    | :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----- | :----- | :----- |
+    | storageKey | 将当前设置好的表头存入 localStorage，防止页面刷新后，恢复到初始表头。如果 storageKey 不传值，则无法存储 localStorage，表格恢复至初始表头。配合组件内部方法\*\*`getColumns() 、setColumns()`\*\* | string | -      | -      |
+
+7.  lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
     | 参数 | 说明       | 类型   | 可选值 | 默认值 |
     | :--- | :--------- | :----- | :----- | :----- |
     | lang | 国际化配置 | string | cn/en  | cn     |
 
-7.  工具栏配置，工具栏默认是空的，提供一个具名插槽 toolbar，来自定义工具栏的内容
+8.  工具栏配置，工具栏默认是空的，提供一个具名插槽 toolbar，来自定义工具栏的内容
 
-8.  事件 columns-change，表头动态修改后的返回函数，函数返回两个值 column1：改变后的所有表头数据、column2：改变后的当前显示的表头数据
+9.  事件 columns-change，表头动态修改后的返回函数，函数返回两个值 column1：改变后的所有表头数据、column2：改变后的当前显示的表头数据
 
         columnsChange(columns1, columns2) {
             console.log(columns1, columns2);
         },
+
+10. 组件内部方法
+
+    1.  `getColumns()`
+
+        tips: 必须先配置 storageKey 属性，给存储表头数据一个键值
+
+        配置 ref 属性，可以通过 ref 获取组件后调用组件内部的\*\*`getColumns()`\*\*方法获取存储到 localStorage 的表头信息
+
+    2.  `setColumns()`
+
+        tips: 必须先配置 storageKey 属性，给存储表头数据一个键值
+
+        配置 ref 属性，可以通过 ref 获取组件后调用组件内部的\*\*`setColumns()`\*\*方法重新设置表格的表头信息
+
+            // 页面初始化的时候，在mounted中重载表格的表头
+            mounted() {
+              var newColumns = this.$refs.dynamicTable.getColumns();
+              this.$refs.dynamicTable.setColumns(newColumns);
+            },
+
+    3.  `reSet()`
+
+        配置 ref 属性，可以通过 ref 获取组件后调用组件内部的\*\*`reSet()`\*\*方法,将表格分页信息初始化
+
+            reSet(){
+              this.$refs.dynamicTable.reSet();
+              this.getList();
+            },
+
+    4.
+
+11.
