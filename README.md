@@ -182,11 +182,11 @@
 
 ##### 介绍
 
-基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.11 版本的所有图标+自定义的 [wisdom 图标库](//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css) / [noah 图标库](//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css)的阿里图标做成选择器，用于图标选择。
+基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.13 版本的所有图标+自定义的 [TBL 图标库](//at.alicdn.com/t/c/font_4403618_7m6z1rqhzx9.css) 阿里图标做成选择器，用于图标选择。
 
 ##### 使用示例
 
-    <tbl-icon-picker v-model="iconValue" placeholder="请选择图标" type="wisdom"></tbl-icon-picker>
+    <tbl-icon-picker v-model="iconValue" placeholder="请选择图标"></tbl-icon-picker>
 
     export default {
       name: 'App',
@@ -199,10 +199,10 @@
 
 ##### 问题解决、配置项、属性等
 
-1.  引入;
+1.  引入
 
         /* 引入自定义tbl图标（在线引用，项目中还是推荐下载下来使用） */
-        @import '//at.alicdn.com/t/c/font_4403618_l5rb57dxkxc.css';
+        @import '//at.alicdn.com/t/c/font_4403618_7m6z1rqhzx9.css';
 
 2)  可配参数
 
