@@ -1,6 +1,6 @@
 {
   "name": "tbl-custom-components",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "private": false,
   "license": "MIT",
   "main": "lib/tbl-custom-components.umd.min.js",

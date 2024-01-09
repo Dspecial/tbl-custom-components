@@ -202,7 +202,7 @@
 1.  引入;
 
         /* 引入自定义tbl图标（在线引用，项目中还是推荐下载下来使用） */
-        @import '//at.alicdn.com/t/c/font_4403618_33y1slt6f6v.css';
+        @import '//at.alicdn.com/t/c/font_4403618_l5rb57dxkxc.css';
 
 2)  可配参数
 
