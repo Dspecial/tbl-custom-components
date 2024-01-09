@@ -182,11 +182,11 @@
 
 ##### 介绍
 
-基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.11 版本的所有图标+自定义的 [TBL 图标库](https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=4403618&sortType=unicode)(https://at.alicdn.com/t/c/font_4403618_33y1slt6f6v.css?spm=a313x.manage_type_myprojects.i1.9.73383a81tQHlnT&file=font_4403618_33y1slt6f6v.css) ，用于图标选择。
+基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.11 版本的所有图标+自定义的 [wisdom 图标库](//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css) / [noah 图标库](//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css)的阿里图标做成选择器，用于图标选择。
 
 ##### 使用示例
 
-    <tbl-icon-picker v-model="iconValue" placeholder="请选择图标"></tbl-icon-picker>
+    <tbl-icon-picker v-model="iconValue" placeholder="请选择图标" type="wisdom"></tbl-icon-picker>
 
     export default {
       name: 'App',
@@ -199,11 +199,12 @@
 
 ##### 问题解决、配置项、属性等
 
-/_ 引入自定义 tbl 图标（在线引用，项目中还是推荐下载下来使用） _/
-@import '//at.alicdn.com/t/c/font_4403618_33y1slt6f6v.css';
+1.  引入;
 
-1.  可配参数
+        /* 引入自定义tbl图标（在线引用，项目中还是推荐下载下来使用） */
+        @import '//at.alicdn.com/t/c/font_4403618_33y1slt6f6v.css';
 
+2)  可配参数
 
     | 参数        | 说明                                                                                      | 类型    | 可选值                                                                                                    | 默认值 |
     | :---------- | :---------------------------------------------------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------- | :----- |
@@ -211,7 +212,7 @@
     | disabled    | 是否禁用，继承 [Input](https://element.eleme.cn/#/zh-CN/component/input#input-attributes) | boolean | false/true                                                                                                | false  |
     | placement   | 弹出框位置，继承 [Popover](https://element.eleme.cn/#/zh-CN/component/popover#attributes) | string  | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom |
 
-2.  lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+3)  lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
     | 参数 | 说明       | 类型   | 可选值 | 默认值 |
     | :--- | :--------- | :----- | :----- | :----- |
