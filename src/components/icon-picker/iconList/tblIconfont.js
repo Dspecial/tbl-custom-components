@@ -1,4 +1,6 @@
 export default [
+  'icon-tbl-WATCH_gateway',
+  'icon-tbl-WATCH_watch',
   'icon-tbl-WIRELESS_terminal',
   'icon-tbl-WIRELESS_gateway',
   'icon-tbl-MESH_route',
@@ -16,8 +18,6 @@ export default [
   'icon-tbl-UWB_tag_group',
   'icon-tbl-UWB_station',
   'icon-tbl-UWB_tag',
-  'icon-tbl-WATCH_gateway',
-  'icon-tbl-WATCH_watch',
   'icon-tbl-dot',
   'icon-tbl-key',
   'icon-tbl-sever',

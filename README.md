@@ -182,7 +182,7 @@
 
 ##### 介绍
 
-基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.13 版本的所有图标+自定义的 [TBL 图标库](//at.alicdn.com/t/c/font_4403618_7m6z1rqhzx9.css) 阿里图标做成选择器，用于图标选择。
+基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.13 版本的所有图标+自定义的 [TBL 图标库](//at.alicdn.com/t/c/font_4403618_ujpcwclle8.css) 阿里图标做成选择器，用于图标选择。
 
 ##### 使用示例
 
@@ -202,7 +202,7 @@
 1.  引入
 
         /* 引入自定义tbl图标（在线引用，项目中还是推荐下载下来使用） */
-        @import '//at.alicdn.com/t/c/font_4403618_7m6z1rqhzx9.css';
+        @import '//at.alicdn.com/t/c/font_4403618_ujpcwclle8.css';
 
 2)  可配参数
 

@@ -440,7 +440,7 @@ export default {
 
 <style>
 /* 引入自定义tbl图标（在线引用，项目中还是推荐下载下来使用） */
-@import '//at.alicdn.com/t/c/font_4403618_7m6z1rqhzx9.css';
+@import '//at.alicdn.com/t/c/font_4403618_ujpcwclle8.css';
 body [class*=' icon-tbl-'],
 body [class^='icon-tbl-'] {
   font-family: 'iconfontTBL' !important;
