@@ -439,10 +439,15 @@ export default {
 </script>
 
 <style>
-/* 引入自定义wisdom 图标（在线引用，项目中还是推荐下载下来使用） */
-@import '//at.alicdn.com/t/c/font_3506871_rdu097xhi9m.css';
-/* 引入自定义noah 图标（在线引用，项目中还是推荐下载下来使用） */
-@import '//at.alicdn.com/t/c/font_2902101_jlg70mqhyge.css';
+/* 引入自定义tbl图标（在线引用，项目中还是推荐下载下来使用） */
+@import '//at.alicdn.com/t/c/font_4403618_9v16d2tzm1.css';
+body [class*=' icon-tbl-'],
+body [class^='icon-tbl-'] {
+  font-family: 'iconfontTBL' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .item {
   margin-bottom: 20px;
 }

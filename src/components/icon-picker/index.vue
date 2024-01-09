@@ -19,7 +19,7 @@
       <div class="icon-dropdown">
         <ul class="fas-icon-list">
           <li v-for="(item, index) in customIconList" :key="index" @click="selectedIcon(item)">
-            <i :class="[type == 'noah' ? 'iconfontnoah' : 'iconfontwisdom', item]" :title="item" />
+            <i :class="['iconfontTBL', item]" :title="item" />
           </li>
         </ul>
       </div>
@@ -32,8 +32,7 @@ import { use, t } from '../../locale/index';
 import en from '../../locale/lang/en';
 import cn from '../../locale/lang/zh-CN';
 import elIconList from './iconList/elIconfont';
-import noahIconList from './iconList/noahIconfont';
-import wisdomIconList from './iconList/wisdomIconfont';
+import tblIconList from './iconList/tblIconfont';
 import { off, on } from './utils/dom';
 export default {
   name: 'TblIconPicker',
@@ -41,14 +40,6 @@ export default {
     lang: {
       type: String,
       default: 'cn', // en|cn
-    },
-    // 定制图标类型 noah / wisdom
-    type: {
-      type: String,
-      //  bottom
-      default() {
-        return 'noah';
-      },
     },
     // 是否禁用文本框
     disabled: {
@@ -84,7 +75,7 @@ export default {
       titleBasic: '',
       titleCustom: '',
       elIconList: elIconList,
-      customIconList: this.type == 'noah' ? noahIconList : wisdomIconList,
+      customIconList: tblIconList,
       visible: false, // popover v-model
       width: 200,
       prefixIcon: 'el-icon-edit',
