@@ -23,7 +23,7 @@ export default [
   'icon-tbl-sever',
   'icon-tbl-yuanquan',
   'icon-tbl-on-off',
-  '.icon-tbl-warning',
+  'icon-tbl-warning',
   'icon-tbl-eye',
   'icon-tbl-no_eye',
   'icon-tbl-alarm',
