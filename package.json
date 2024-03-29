@@ -1,6 +1,6 @@
 {
   "name": "tbl-custom-components",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "private": false,
   "license": "MIT",
   "main": "lib/tbl-custom-components.umd.min.js",
@@ -10,7 +10,7 @@
     "lib": "vue-cli-service build  --target lib --dest lib src/components/index.js"
   },
   "dependencies": {
-    "element-ui": "^2.15.13",
+    "element-ui": "^2.15.14",
     "vue": "^2.6.14",
     "vuedraggable": "^2.24.3"
   },

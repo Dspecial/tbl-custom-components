@@ -2,7 +2,7 @@
 
 [项目地址](https://github.com/Dspecial/tbl-custom-components.git)
 
-基于`element-ui@2.15.13` 二次封装一些小组件，提高插拔性，便于多项目使用
+基于`element-ui@2.15.14` 二次封装一些小组件，提高插拔性，便于多项目使用
 
 ### 一、安装文档
 
@@ -118,7 +118,17 @@
 
 4.  继承 [DateTimePicker](https://element.eleme.cn/#/zh-CN/component/datetime-picker) 的所有属性、事件和方法
 
-5.  lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
+5.  activeShortcut 属性：
+
+    | 参数           | 说明                 | 类型   | 可选值            | 默认值 |
+    | :------------- | :------------------- | :----- | :---------------- | :----- |
+    | activeShortcut | 默认高亮的快捷项按钮 | string | 0/1/2/3/4/5/6/7/8 | ''     |
+
+    0-8 分别对应 btnOption 中的 9 个按钮
+
+6.  方法 getActiveShortcut(index,picker) 参数为快捷项下标和快捷项本身
+
+7.  lang 国际化配置，当前组件设置了 lang 属性，可重新覆盖全局国际化的配置
 
     | 参数 | 说明       | 类型   | 可选值 | 默认值 |
     | :--- | :--------- | :----- | :----- | :----- |
@@ -182,7 +192,7 @@
 
 ##### 介绍
 
-基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.13 版本的所有图标+自定义的 [TBL 图标库](//at.alicdn.com/t/c/font_4403618_ujpcwclle8.css) 阿里图标做成选择器，用于图标选择。
+基于`element-ui`，使用[Input](https://element.eleme.cn/#/zh-CN/component/input) 组件和[Popover](https://element.eleme.cn/#/zh-CN/component/popover) 组件，将 2.15.14 版本的所有图标+自定义的 [TBL 图标库](//at.alicdn.com/t/c/font_4403618_ujpcwclle8.css) 阿里图标做成选择器，用于图标选择。
 
 ##### 使用示例
 

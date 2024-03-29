@@ -12,7 +12,9 @@
         value-format="yyyy-MM-dd HH:mm:ss"
         :btnOption="btnOption"
         :picker-options="pickerOptions"
+        :activeShortcut="activeShortcut"
         @change="onChange"
+        @getActiveShortcut="getActiveShortcut"
       ></tbl-daterange-picker>
       <el-button type="primary" @click="clear">清空</el-button>
     </div>
@@ -154,6 +156,7 @@ export default {
           return date.getTime() > Date.now();
         },
       },
+      activeShortcut: null,
 
       // tooltip-over
       content: `他找来半张红纸和一支毛笔，让村里的一名小学老师为他写了一张告示。告示的大概内容是：因收入微薄无法承担太多应酬，除丧葬、嫁娶之外`,
@@ -300,12 +303,21 @@ export default {
   mounted() {
     var newColumns = this.$refs.dynamicTable.getColumns();
     this.$refs.dynamicTable.setColumns(newColumns);
+
+    setTimeout(() => {
+      this.activeShortcut = 2;
+    });
   },
   methods: {
     onChange(val) {
       console.log(val, '获取到绑定的时间范围值');
       this.defaultValue = val;
     },
+
+    getActiveShortcut(index, picker) {
+      console.log(index, 'index');
+    },
+
     // 清空
     clear() {
       this.defaultValue = [];

@@ -142,11 +142,13 @@ export default {
     },
     // 点击控件外，判断是否隐藏弹出框
     _popoverHideFun(e) {
-      let isInter = e.path.some(list => {
-        return list.className && list.className.indexOf('fas-icon-list') !== -1;
-      });
-      if (!isInter) {
-        this.visible = false;
+      if (e.path) {
+        let isInter = e.path.some(list => {
+          return list.className && list.className.indexOf('fas-icon-list') !== -1;
+        });
+        if (!isInter) {
+          this.visible = false;
+        }
       }
     },
     // 判断类型，抛出当前选中id
